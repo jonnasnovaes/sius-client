@@ -1,0 +1,21 @@
+.side-nav {
+  height: 100% !important;
+
+  & > mat-drawer {
+    min-width: 250px !important;
+  }
+}
+
+.header-menu {
+  position: absolute;
+  right: 20px;
+}
+
+//.menu-option {
+//  display: inline;
+//
+//  & > div > button {
+//    width: 100% !important;
+//    height: 45px;
+//  }
+//}

@@ -1,61 +1,90 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>SIUS</span>
-    
-    <button class="header-menu" mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item class="d-flex align-items-center">
-        <i class="ic-exit mr-2"></i><span>Deslogar</span>
+<!--    <span>SIUS</span>-->
+    <div class="content-logo">
+      <img class="logo" src="assets/logo.png" />
+    </div>
+
+    <span>Sistema de Informação Único de Saúde</span>
+
+    <div class="header-menu">
+
+      <img height="40" width="40" class="rounded-circle" src="assets/perfil-anonimo.jpg" />
+
+      <span class="ml-3 mr-2">Enfermeiro / Coordenador</span>
+
+      <button class="btn-menu-option" mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="ic-ctrl seta-option"></i>
       </button>
-    </mat-menu>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item class="d-flex align-items-center">
+          <i class="ic-exit mr-2"></i><span>Deslogar</span>
+        </button>
+      </mat-menu>
+    </div>
+
+
+
+
 
   </mat-toolbar-row>
 
-
-<!--  <mat-toolbar-row>-->
-<!--    <span>Second Line</span>-->
-<!--    <span class="example-spacer"></span>-->
-<!--    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
-<!--      <mat-icon>favorite</mat-icon>-->
-<!--    </button>-->
-<!--    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
-<!--      <mat-icon>share</mat-icon>-->
-<!--    </button>-->
-<!--  </mat-toolbar-row>-->
 </mat-toolbar>
 
 <mat-drawer-container class="side-nav">
   <mat-drawer mode="side" opened>
 
     <mat-selection-list class="pt-0" [multiple]="false">
-      <mat-list-option>Registrar Vacinação</mat-list-option>
+      <mat-list-option routerLink="calendario-vacinacao">
+        <div class="menu-item-list">
+          <i class="ic-calendar mr-2"></i> Calendário de Vacinação
+        </div>
+      </mat-list-option>
+
       <mat-divider></mat-divider>
-      <mat-list-option>Verificar Estoque</mat-list-option>
+
+      <mat-list-option routerLink="registrar-vacinacao">
+        <div class="menu-item-list">
+          <i class="ic-barcode mr-2"></i> Registrar Vacinação
+        </div>
+      </mat-list-option>
+
       <mat-divider></mat-divider>
-      <mat-list-option>Solicitar Vacina</mat-list-option>
+
+      <mat-list-option routerLink="verificar-estoque">
+        <div class="menu-item-list">
+          <i class="ic-file-text mr-2"></i> Verificar Estoque
+        </div>
+      </mat-list-option>
+
       <mat-divider></mat-divider>
-      <mat-list-option>Registrar Lote</mat-list-option>
+
+      <mat-list-option routerLink="solicitar-vacina">
+        <div class="menu-item-list">
+          <i class="ic-truck mr-2"></i> Solicitar Vacina
+        </div>
+      </mat-list-option>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-option routerLink="registrar-lote">
+        <div class="menu-item-list">
+          <i class="ic-clipboard mr-2"></i> Registrar Lote
+        </div>
+      </mat-list-option>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-option>
+        <div class="menu-item-list" routerLink="registrar-caderneta">
+          <i class="ic-profile mr-2"></i> Registrar Caderneta
+        </div>
+      </mat-list-option>
     </mat-selection-list>
-<!--    <div class="menu-option">-->
-<!--      <div>-->
-<!--        <button mat-button color="primary">Registrar Vacinação</button>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <button mat-button color="primary">Verificar Estoque</button>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <button mat-button color="primary">Solicitar Vacina</button>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <button mat-button color="primary">Registrar Lote</button>-->
-<!--      </div>-->
-<!--    </div>-->
   </mat-drawer>
 
   <mat-drawer-content>
-    Main content
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 
 </mat-drawer-container>

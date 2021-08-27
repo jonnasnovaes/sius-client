@@ -8,6 +8,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -17,6 +19,8 @@ import {MatListModule} from '@angular/material/list';
   ],
   imports: [
     CommonModule,
+    BrowserModule,
+    RouterModule,
     MatButtonModule,
     MatSidenavModule,
     MatMenuModule,
@@ -28,6 +32,8 @@ import {MatListModule} from '@angular/material/list';
   ],
   exports: [
     HeaderComponent,
+    BrowserModule,
+    RouterModule,
     MatButtonModule,
     MatSidenavModule,
     MatMenuModule,

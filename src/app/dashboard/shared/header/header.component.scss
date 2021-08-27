@@ -1,5 +1,5 @@
 .side-nav {
-  height: 100% !important;
+  height: calc(100% - 80px) !important;
 
   & > mat-drawer {
     min-width: 250px !important;
@@ -7,15 +7,76 @@
 }
 
 .header-menu {
+  display: flex;
+  align-items: center;
   position: absolute;
   right: 20px;
+
+  & > span {
+    font-size: 16px;
+    text-decoration: underline;
+  }
 }
 
-//.menu-option {
-//  display: inline;
-//
-//  & > div > button {
-//    width: 100% !important;
-//    height: 45px;
-//  }
-//}
+.btn-menu-option {
+  transform: rotate(180deg);
+}
+
+.seta-option {
+  font-size: 24px !important;
+  font-weight: bold;
+}
+
+.content-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  border-right: 1px solid white;
+  margin-right: 20px;
+
+  & > .logo {
+    cursor: pointer;
+    height: 55px;
+    width: 115px;
+  }
+}
+
+
+
+.menu-item-list {
+  display: flex;
+  align-items: center;
+
+  & > i {
+    font-size: 22px;
+  }
+}
+
+
+mat-toolbar {
+  height: 80px;
+  //background-color: #0061a6 !important;
+  background: url("/assets/header-background.png") !important;
+}
+
+mat-toolbar-row {
+  align-items: center;
+  height: 100%;
+}
+
+mat-drawer {
+  background-color: #e8e4e4;
+}
+
+// Controla o FOCUS do item do menu lateral
+.mat-list-single-selected-option, .mat-list-single-selected-option:hover, .mat-list-single-selected-option:focus {
+  background-color: #003771 !important;
+  color: white !important;
+}
+
+// Controla o HOVER do item do menu lateral
+.mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {
+  background-color: #989898;
+  color: white;
+}

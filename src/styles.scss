@@ -42,3 +42,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~bootstrap/scss/bootstrap';
 
 @import "src/style/style";
+
+// Estilo padrão do content de conteúdo
+.page-content {
+  margin-inline: 40px;
+
+  & > .page-content-title {
+    margin-top: 40px;
+
+    & > span {
+      color: #003771;
+      font-size: 32px;
+
+    }
+  }
+}
+

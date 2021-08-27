@@ -7,10 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from './dashboard/shared/shared.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { CalendarioVacinacaoComponent } from './dashboard/calendario-vacinacao/calendario-vacinacao.component';
+import { RegistrarVacinacaoComponent } from './dashboard/registrar-vacinacao/registrar-vacinacao.component';
+import { VerificarEstoqueComponent } from './dashboard/verificar-estoque/verificar-estoque.component';
+import { SolicitarVacinaComponent } from './dashboard/solicitar-vacina/solicitar-vacina.component';
+import { RegistrarLoteComponent } from './dashboard/registrar-lote/registrar-lote.component';
+import { RegistrarCadernetaComponent } from './dashboard/registrar-caderneta/registrar-caderneta.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalendarioVacinacaoComponent,
+    RegistrarVacinacaoComponent,
+    VerificarEstoqueComponent,
+    SolicitarVacinaComponent,
+    RegistrarLoteComponent,
+    RegistrarCadernetaComponent
   ],
   imports: [
     BrowserModule,

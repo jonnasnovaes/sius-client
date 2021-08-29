@@ -1,0 +1,25 @@
+<div class="page">
+  <div class="page-content">
+    <div class="page-content-title">
+      <span>Calendário de Vacinação</span>
+    </div>
+    <div class="page-content-line"></div>
+  </div>
+
+  <div class="content">
+
+    <div class="grid-calendario">
+      <div class="card-vac" *ngFor="let item of calendario">
+        <div class="card-titulo">{{ item.titulo }}</div>
+        <div class="content-vacina">
+          <div class="card-vacina" *ngFor="let vacina of item.vacinas">{{ vacina }}</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+

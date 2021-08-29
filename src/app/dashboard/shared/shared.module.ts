@@ -10,6 +10,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -20,6 +21,7 @@ import {RouterModule} from '@angular/router';
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     MatButtonModule,
     MatSidenavModule,

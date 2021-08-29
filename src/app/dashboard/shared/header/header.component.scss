@@ -1,8 +1,11 @@
+@import "src/style/color-var";
+
 .side-nav {
-  height: calc(100% - 80px) !important;
+  height: calc(100% - 90px) !important;
 
   & > mat-drawer {
     min-width: 250px !important;
+    box-shadow: 3px 0 4px -2px rgb(0 0 0 / 30%);
   }
 }
 
@@ -13,6 +16,7 @@
   right: 20px;
 
   & > span {
+    //color: $laranja-sius;
     font-size: 16px;
     text-decoration: underline;
   }
@@ -32,17 +36,37 @@
   align-items: center;
   justify-content: center;
   width: 240px;
-  border-right: 1px solid white;
+  border-right: 1px solid $laranja-sius;
   margin-right: 20px;
 
   & > .logo {
     cursor: pointer;
-    height: 55px;
+    height: 100%;
     width: 115px;
   }
 }
 
+.titulo-header {
+  color: $laranja-sius;
+}
 
+mat-nav-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  background-color: #EEEEEE;
+  height: 50px;
+}
+
+.mat-list-title {
+  width: 100%;
+  margin-left: 15px;
+  & > span {
+    color: $preto-sius !important;
+    font-weight: bold !important;
+  }
+}
 
 .menu-item-list {
   display: flex;
@@ -55,7 +79,7 @@
 
 
 mat-toolbar {
-  height: 80px;
+  height: 90px;
   //background-color: #0061a6 !important;
   background: url("/assets/header-background.png") !important;
 }
@@ -66,17 +90,17 @@ mat-toolbar-row {
 }
 
 mat-drawer {
-  background-color: #e8e4e4;
+  background-color: #FAFAFA;
 }
 
 // Controla o FOCUS do item do menu lateral
 .mat-list-single-selected-option, .mat-list-single-selected-option:hover, .mat-list-single-selected-option:focus {
-  background-color: #003771 !important;
+  background-color: $laranja-sius !important;
   color: white !important;
 }
 
 // Controla o HOVER do item do menu lateral
 .mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {
-  background-color: #989898;
-  color: white;
+  //background-color: #989898;
+  //color: white;
 }

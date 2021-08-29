@@ -1,21 +1,57 @@
-$white: #ffffff;
-$red: #d95f5f;
-$redLight: #D9A4A4;
-$redCeleste: #FF9292;
-$blue: #0284CA;
-$blueBaby: #A2D1DE;
-$blueLight: #7082a4;
-$blueCeleste: #E9EFF4;
-$green: #259821;
-$greenLight: #98C72A;
-$greenMint: #D4ECD4;
-$yellow: #FBA61C;
-$yellowLight: #FFD012;
-$orange: #ef6b01;
-$grey: #585858;
-$greyBaby: #BFCDD5;
-$greyDefault: #ABABAB;
-$greyLight: #EEEEEE;
-$greyDark: #323c47;
-$greyLight2: #e9ecef;
+/*
+  Definição da tabela de cores
+*/
+$azul-1:     #253E6A;          // $astronaut:            #253E6A;
+$azul-2:     #03286A;          // $catalinaBlue:         #03286A;
+$lilas-1:    #7082A4;          // $bermudaGrayLight:     #7082A4;
+$lilas-2:    #7184A7;          // $bermudaGray:          #7184A7;
+$lilas-3:    #5573A5;          // $waikawaGray:          #5573A5;
+$lilas-4:    #43639C;          // $sanMarino:            #43639C;
+$lilas-5:    #335BA3;          // $azure:                #335BA3;
+$verde-1:    #77BB6B;          // $fern:	               #77BB6B;
+$verde-2:    #259821;          // $forestGreen:          #259821;
+$amarelo-1:  #FFD012;          // $candleLight: 	       #FFD012;
+$amarelo-2:  #F7A30F;          // $sun:	                 #F7A30F;
+$amarelo-3:  #EBA43F;          // $tulipTree: 	         #EBA43F;
+$laranja-1:  #F58C43;          // $jaffa: 	             #F58C43;
+$laranja-2:  #ED6E0B;          // $christine:            #ED6E0B
+$laranja-3:  #EF6B01;          // $clementine: 	         #EF6B01;
+$laranja-4:  #FF6D4A;          // $persimmon: 	         #FF6D4A;
+$vermelho-1: #D95F5F;          // $roman:                #D95F5F
+$vermelho-2: #FF0000;          // $red:                  #FF0000
+$cinza-1:    #D0D7DD;          // $geyser:               #D0D7DD;
+$cinza-2:    #CCCCCC;          // $silver:               #CCCCCC;
+$cinza-3:    #B6BEC8;          // $loblolly:    	       #B6BEC8;
+$cinza-4:    #A9ABB9;          // $spunPearl:  	         #A9ABB9;
+$cinza-5:    #989898;          // $dustyGray:            #989898;
+$cinza-6:    #839098;          // $regentGray:           #839098;
+$cinza-7:    #6C757D;          // $paleSky: 	           #6C757D;
+$cinza-8:    #707070;          // $doveGrayLight:        #707070;
+$cinza-9:    #656565;          // $doveGray:     	       #656565;
+$cinza-10:   #595D66;          // $shuttleGray:          #595D66;
+$cinza-11:   #404040;          // $tundora: 	           #404040;
+$preto-1:    #212529;          // $shark: 	             #212529;
+$branco-1:   #FFFFFF;          // $white:                #FFFFFF;
+$branco-2:   #F3F3F1;          // $desertStorm:  	       #F3F3F1;
+$branco-3:   #F3F3F3;          // $concrete:             #F3F3F3;
+$branco-4:   #E2E2E2;          // $mercury:   	         #E2E2E2;
+$branco-5:   #DFDFDF;          // $altoLight:  	         #DFDFDF;
+$branco-6:   #DDDDDD;          // $alto:  	             #DDDDDD;
+$oceano-1:   #F4F7F9;          // $aquaHazeLight:	       #F4F7F9;
+$oceano-2:   #F3F6F8;          // $aquaHaze:             #F3F6F8;
+$oceano-3:   #E9EFF4;          // $catskillWhite:        #E9EFF4;
+$oceano-4:   #BFCDD5;          // $heather:              #BFCDD5;
+$oceano-5:   #5F9EA0;          // $breakerBay:           #5F9EA0;
+$oceano-6:   #323C47;          // $limedSpruce: 	       #323C47;
 
+
+
+// Tabela de cores da identidade visual
+
+$laranja-sius: #F6A400;
+$azul-claro-sius: #1B67A5;
+$azul-sius: #103F90;
+$azul-escuro-sius: #083575;
+$verde-sius: #287380;
+$preto-sius: #585858;
+$cinza-sius: #EEEEEE;

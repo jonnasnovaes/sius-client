@@ -5,7 +5,7 @@
       <img class="logo" src="assets/logo.png" />
     </div>
 
-    <span>Sistema de Informação Único de Saúde</span>
+    <span class="titulo-header">Sistema de Informação Único de Saúde</span>
 
     <div class="header-menu">
 
@@ -35,41 +35,16 @@
   <mat-drawer mode="side" opened>
 
     <mat-selection-list class="pt-0" [multiple]="false">
+
+      <mat-nav-list>
+        <div class="mat-list-title">
+          <span>PACIENTES</span>
+        </div>
+      </mat-nav-list>
+
       <mat-list-option routerLink="calendario-vacinacao">
         <div class="menu-item-list">
-          <i class="ic-calendar mr-2"></i> Calendário de Vacinação
-        </div>
-      </mat-list-option>
-
-      <mat-divider></mat-divider>
-
-      <mat-list-option routerLink="registrar-vacinacao">
-        <div class="menu-item-list">
-          <i class="ic-barcode mr-2"></i> Registrar Vacinação
-        </div>
-      </mat-list-option>
-
-      <mat-divider></mat-divider>
-
-      <mat-list-option routerLink="verificar-estoque">
-        <div class="menu-item-list">
-          <i class="ic-file-text mr-2"></i> Verificar Estoque
-        </div>
-      </mat-list-option>
-
-      <mat-divider></mat-divider>
-
-      <mat-list-option routerLink="solicitar-vacina">
-        <div class="menu-item-list">
-          <i class="ic-truck mr-2"></i> Solicitar Vacina
-        </div>
-      </mat-list-option>
-
-      <mat-divider></mat-divider>
-
-      <mat-list-option routerLink="registrar-lote">
-        <div class="menu-item-list">
-          <i class="ic-clipboard mr-2"></i> Registrar Lote
+          <i class="ic-calendar mr-3"></i> Calendário de Vacinação
         </div>
       </mat-list-option>
 
@@ -77,9 +52,49 @@
 
       <mat-list-option>
         <div class="menu-item-list" routerLink="registrar-caderneta">
-          <i class="ic-profile mr-2"></i> Registrar Caderneta
+          <i class="ic-profile mr-3"></i> Registrar Caderneta
         </div>
       </mat-list-option>
+
+      <mat-divider></mat-divider>
+
+      <mat-nav-list>
+        <div class="mat-list-title">
+          <span>VACINAS</span>
+        </div>
+      </mat-nav-list>
+
+      <mat-list-option routerLink="registrar-vacinacao">
+        <div class="menu-item-list">
+          <i class="ic-barcode mr-3"></i> Registrar Vacinação
+        </div>
+      </mat-list-option>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-option routerLink="verificar-estoque">
+        <div class="menu-item-list">
+          <i class="ic-file-text mr-3"></i> Verificar Estoque
+        </div>
+      </mat-list-option>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-option routerLink="solicitar-vacina">
+        <div class="menu-item-list">
+          <i class="ic-truck mr-3"></i> Solicitar Vacina
+        </div>
+      </mat-list-option>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-option routerLink="registrar-lote">
+        <div class="menu-item-list">
+          <i class="ic-clipboard mr-3"></i> Registrar Lote
+        </div>
+      </mat-list-option>
+
+
     </mat-selection-list>
   </mat-drawer>
 

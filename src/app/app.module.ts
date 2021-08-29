@@ -17,7 +17,6 @@ import { RegistrarCadernetaComponent } from './dashboard/registrar-caderneta/reg
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarioVacinacaoComponent,
     RegistrarVacinacaoComponent,
     VerificarEstoqueComponent,
     SolicitarVacinaComponent,

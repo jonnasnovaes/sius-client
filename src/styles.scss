@@ -43,18 +43,40 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import "src/style/style";
 
+@import "style/color-var";
+
 // Estilo padrão do content de conteúdo
-.page-content {
-  margin-inline: 40px;
+.page {
+  //height: 100%;
 
-  & > .page-content-title {
-    margin-top: 40px;
+  & > .content {
+    position: relative;
+    top: 80px;
+    margin-inline: 40px;
+  }
 
-    & > span {
-      color: #003771;
-      font-size: 32px;
+  .page-content {
+    margin-inline: 40px;
 
+    & > .page-content-title {
+      margin-top: 40px;
+
+      & > span {
+        color: #003771;
+        font-size: 32px;
+      }
+    }
+
+    & > .page-content-line {
+      height: 15px;
+      width: 100%;
+      position: absolute;
+      //background-color: #f3f6f8;
+      background-color: #EEEEEE;
+      left: 0;
+      margin-top: 30px;
     }
   }
 }
+
 

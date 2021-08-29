@@ -1,0 +1,41 @@
+@import "src/style/color-var";
+
+.grid-calendario {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  //column-gap: 10px;
+}
+
+.card-vac {
+  border-left: 1px solid $laranja-sius;
+  border-bottom: 1px solid $laranja-sius;
+  border-right: 1px solid $laranja-sius;
+  border-radius: 5px;
+
+  width: calc((100vw - 250px) / 4);
+
+  & > .card-titulo {
+    height: 40px;
+    border-radius: 5px 5px 0px 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: $azul-claro-sius;
+  }
+
+  & > .content-vacina {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    & > .card-vacina {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+
+}

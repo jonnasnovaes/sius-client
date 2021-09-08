@@ -13,15 +13,21 @@ import { VerificarEstoqueComponent } from './dashboard/verificar-estoque/verific
 import { SolicitarVacinaComponent } from './dashboard/solicitar-vacina/solicitar-vacina.component';
 import { RegistrarLoteComponent } from './dashboard/registrar-lote/registrar-lote.component';
 import { RegistrarCadernetaComponent } from './dashboard/registrar-caderneta/registrar-caderneta.component';
+import { CadastrarVacinaComponent } from './dashboard/cadastrar-vacina/cadastrar-vacina.component';
+import { LiberarLoteComponent } from './dashboard/liberar-lote/liberar-lote.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrarVacinacaoComponent,
     VerificarEstoqueComponent,
-    SolicitarVacinaComponent,
     RegistrarLoteComponent,
-    RegistrarCadernetaComponent
+    RegistrarCadernetaComponent,
+    SolicitarVacinaComponent,
+    CadastrarVacinaComponent,
+    LiberarLoteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

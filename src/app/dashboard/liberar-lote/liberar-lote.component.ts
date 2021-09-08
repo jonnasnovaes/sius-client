@@ -22,11 +22,11 @@ const ELEMENT_DATA: Vacina[] = [
 ];
 
 @Component({
-  selector: 'app-registrar-lote',
-  templateUrl: './registrar-lote.component.html',
-  styleUrls: ['./registrar-lote.component.scss']
+  selector: 'app-liberar-lote',
+  templateUrl: './liberar-lote.component.html',
+  styleUrls: ['./liberar-lote.component.scss']
 })
-export class RegistrarLoteComponent implements OnInit {
+export class LiberarLoteComponent implements OnInit {
 
   displayedColumns: string[] = ['nome', 'fabricante', 'numeroLote', 'recebimento'];
   dataSource = ELEMENT_DATA;

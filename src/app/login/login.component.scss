@@ -1,0 +1,53 @@
+.background {
+  height: 100%;
+  width: 100%;
+  background: url('/assets/login-background.png') no-repeat !important;
+  background-size: 100% 100% !important;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+
+  & > .content-logo {
+    display: flex;
+    justify-content: center;
+    & > img {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      height: 100%;
+      width: 115px;
+    }
+  }
+
+  & > .content-texto {
+    display: flex;
+    justify-content: center;
+
+    & > span {
+      color: #F7AB00;
+      font-weight: bold;
+    }
+  }
+
+  & > .content-input {
+    padding-inline: 40px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    & > input {
+      margin-bottom: 10px;
+    }
+  }
+
+  & > .content-footer {
+    width: 100%;
+    padding-inline: 40px;
+    margin-bottom: 30px;
+
+    & > button {
+      width: 100%;
+      background-color: #F7AB00;
+    }
+  }
+}

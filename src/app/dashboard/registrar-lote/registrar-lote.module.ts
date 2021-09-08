@@ -7,14 +7,12 @@ import {RegistrarLoteComponent} from './registrar-lote.component';
 
 @NgModule({
   declarations: [
-    RegistrarLoteComponent
   ],
   imports: [
     CommonModule,
     RegistrarLoteRoutingModule
   ],
   exports: [
-    RegistrarLoteComponent
   ]
 })
 export class RegistrarLoteModule { }

@@ -6,8 +6,15 @@ import {VerificarEstoqueComponent} from './dashboard/verificar-estoque/verificar
 import {RegistrarLoteComponent} from './dashboard/registrar-lote/registrar-lote.component';
 import {RegistrarCadernetaComponent} from './dashboard/registrar-caderneta/registrar-caderneta.component';
 import {SolicitarVacinaComponent} from './dashboard/solicitar-vacina/solicitar-vacina.component';
+import {CadastrarVacinaComponent} from './dashboard/cadastrar-vacina/cadastrar-vacina.component';
+import {LiberarLoteComponent} from './dashboard/liberar-lote/liberar-lote.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'calendario-vacinacao',
     component: CalendarioVacinacaoComponent
@@ -31,6 +38,14 @@ const routes: Routes = [
   {
     path: 'registrar-caderneta',
     component: RegistrarCadernetaComponent
+  },
+  {
+    path: 'cadastrar-vacina',
+    component: CadastrarVacinaComponent
+  },
+  {
+    path: 'liberar-lote',
+    component: LiberarLoteComponent
   }
 ];
 

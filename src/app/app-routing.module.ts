@@ -12,41 +12,22 @@ import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'calendario-vacinacao',
-    component: CalendarioVacinacaoComponent
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dahsboard.module').then(mod => mod.DahsboardModule)
   },
   {
-    path: 'registrar-vacinacao',
-    component: RegistrarVacinacaoComponent
+    path: '**',
+    redirectTo: 'login'
   },
-  {
-    path: 'verificar-estoque',
-    component: VerificarEstoqueComponent
-  },
-  {
-    path: 'solicitar-vacina',
-    component: SolicitarVacinaComponent
-  },
-  {
-    path: 'registrar-lote',
-    component: RegistrarLoteComponent
-  },
-  {
-    path: 'registrar-caderneta',
-    component: RegistrarCadernetaComponent
-  },
-  {
-    path: 'cadastrar-vacina',
-    component: CadastrarVacinaComponent
-  },
-  {
-    path: 'liberar-lote',
-    component: LiberarLoteComponent
-  }
 ];
 
 @NgModule({

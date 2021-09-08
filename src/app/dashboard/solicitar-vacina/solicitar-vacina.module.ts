@@ -8,12 +8,14 @@ import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
+    SolicitarVacinaComponent
   ],
   imports: [
-    CommonModule,
     SolicitarVacinaRoutingModule,
+    SharedModule
   ],
   exports: [
+    SolicitarVacinaComponent
   ]
 })
 export class SolicitarVacinaModule { }

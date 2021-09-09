@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +10,31 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  form = new FormGroup({
+    email: new FormControl(''),
+    senha: new FormControl('')
+  });
+
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
   }
 
   async logar(): Promise<any> {
-    await this.router.navigateByUrl('dashboard/calendario-vacinacao');
+    const perfilAtivo = await this.authService.login(this.form.value);
+
+    if (perfilAtivo === 0) {
+      await this.router.navigateByUrl('dashboard/cadastrar-vacina');
+    }
+    else if (perfilAtivo === 1) {
+      await this.router.navigateByUrl('dashboard/calendario-vacinacao');
+    }
+    else if (!perfilAtivo) {
+      console.log('Erro de login');
+    }
   }
 
 }

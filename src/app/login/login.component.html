@@ -10,9 +10,9 @@
             <span>Sistema de Informação Único de Saúde</span>
           </div>
 
-          <div class="content-input">
-            <input class="form-control" type="text" placeholder="Email">
-            <input class="form-control" type="password" placeholder="Senha">
+          <div class="content-input" [formGroup]="form">
+            <input class="form-control" type="text" placeholder="Email" formControlName="email">
+            <input class="form-control" type="password" placeholder="Senha" formControlName="senha">
           </div>
 
           <div class="content-footer">

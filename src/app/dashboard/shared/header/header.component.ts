@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,19 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  perfilAtivo: number;
+
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.perfilAtivo = this.authService.getPerfil();
   }
 
   async logout(): Promise<any> {
-    await this.router.navigateByUrl('login');
+    await this.authService.logout();
   }
 
 }

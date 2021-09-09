@@ -11,7 +11,8 @@
 
       <img height="40" width="40" class="rounded-circle" src="assets/perfil-anonimo.jpg" />
 
-      <span class="ml-3 mr-2">Enfermeiro / Coordenador</span>
+      <span class="ml-3 mr-2" *ngIf="perfilAtivo === 0">Secretaria de Saúde</span>
+      <span class="ml-3 mr-2" *ngIf="perfilAtivo === 1">Enfermeiro / Coordenador</span>
 
       <button class="btn-menu-option" mat-icon-button [matMenuTriggerFor]="menu">
         <i class="ic-ctrl seta-option"></i>
@@ -23,10 +24,6 @@
       </mat-menu>
     </div>
 
-
-
-
-
   </mat-toolbar-row>
 
 </mat-toolbar>
@@ -36,27 +33,31 @@
 
     <mat-selection-list class="pt-0" [multiple]="false">
 
-      <mat-nav-list>
-        <div class="mat-list-title">
-          <span>PACIENTES</span>
-        </div>
-      </mat-nav-list>
+      <div *ngIf="perfilAtivo === 1">
+        <mat-nav-list>
+          <div class="mat-list-title">
+            <span>PACIENTES</span>
+          </div>
+        </mat-nav-list>
 
-      <mat-list-option routerLink="calendario-vacinacao">
-        <div class="menu-item-list">
-          <i class="ic-calendar mr-3"></i> Calendário de Vacinação
-        </div>
-      </mat-list-option>
+        <mat-list-option routerLink="calendario-vacinacao">
+          <div class="menu-item-list">
+            <i class="ic-calendar mr-3"></i> Calendário de Vacinação
+          </div>
+        </mat-list-option>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <mat-list-option>
-        <div class="menu-item-list" routerLink="registrar-caderneta">
-          <i class="ic-profile mr-3"></i> Registrar Caderneta
-        </div>
-      </mat-list-option>
+        <mat-list-option>
+          <div class="menu-item-list" routerLink="registrar-caderneta">
+            <i class="ic-profile mr-3"></i> Registrar Caderneta
+          </div>
+        </mat-list-option>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+      </div>
+
+
 
       <mat-nav-list>
         <div class="mat-list-title">
@@ -64,52 +65,57 @@
         </div>
       </mat-nav-list>
 
-      <mat-list-option routerLink="registrar-vacinacao">
-        <div class="menu-item-list">
-          <i class="ic-barcode mr-3"></i> Registrar Vacinação
-        </div>
-      </mat-list-option>
+      <div *ngIf="perfilAtivo === 1">
+        <mat-list-option routerLink="registrar-vacinacao">
+          <div class="menu-item-list">
+            <i class="ic-barcode mr-3"></i> Registrar Vacinação
+          </div>
+        </mat-list-option>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <mat-list-option routerLink="verificar-estoque">
-        <div class="menu-item-list">
-          <i class="ic-file-text mr-3"></i> Verificar Estoque
-        </div>
-      </mat-list-option>
+        <mat-list-option routerLink="verificar-estoque">
+          <div class="menu-item-list">
+            <i class="ic-file-text mr-3"></i> Verificar Estoque
+          </div>
+        </mat-list-option>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <mat-list-option routerLink="solicitar-vacina">
-        <div class="menu-item-list">
-          <i class="ic-loop mr-3"></i> Solicitar Vacina
-        </div>
-      </mat-list-option>
+        <mat-list-option routerLink="solicitar-vacina">
+          <div class="menu-item-list">
+            <i class="ic-loop mr-3"></i> Solicitar Vacina
+          </div>
+        </mat-list-option>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <mat-list-option routerLink="registrar-lote">
-        <div class="menu-item-list">
-          <i class="ic-clipboard mr-3"></i> Registrar Lote
-        </div>
-      </mat-list-option>
+        <mat-list-option routerLink="registrar-lote">
+          <div class="menu-item-list">
+            <i class="ic-clipboard mr-3"></i> Registrar Lote
+          </div>
+        </mat-list-option>
+      </div>
 
+      <div *ngIf="perfilAtivo === 0">
+        <mat-divider></mat-divider>
+        <mat-list-option routerLink="cadastrar-vacina">
+          <div class="menu-item-list">
+            <i class="ic-pen mr-3"></i> Cadastrar Vacina
+          </div>
+        </mat-list-option>
+
+        <mat-divider></mat-divider>
+        <mat-list-option routerLink="liberar-lote">
+          <div class="menu-item-list">
+            <i class="ic-truck mr-3"></i> Liberar Lote
+          </div>
+        </mat-list-option>
+      </div>
 
     <!--  PARTE DA SECRETARIA DE SAÚDE    -->
 
-      <mat-divider></mat-divider>
-      <mat-list-option routerLink="cadastrar-vacina">
-        <div class="menu-item-list">
-          <i class="ic-pen mr-3"></i> Cadastrar Vacina
-        </div>
-      </mat-list-option>
 
-      <mat-divider></mat-divider>
-      <mat-list-option routerLink="liberar-lote">
-        <div class="menu-item-list">
-          <i class="ic-truck mr-3"></i> Liberar Lote
-        </div>
-      </mat-list-option>
 
     </mat-selection-list>
   </mat-drawer>

@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -19,6 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientModule,
     NgbModule,
     RouterModule,
     MatButtonModule,
@@ -33,6 +35,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   exports: [
     CommonModule,
+    HttpClientModule,
     NgbModule,
     RouterModule,
     MatButtonModule,

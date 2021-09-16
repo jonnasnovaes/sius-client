@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <span>Confirmar</span>
+  <div class="d-flex justify-content-end align-items-center">
+    <i class="ic-cross text-grey mr-2" (click)="closeModal('close')"></i>
+  </div>
+</div>
+
+<div class="modal-content">
+  <div class="content">
+    <span>{{ message }}</span>
+  </div>
+</div>
+
+<div class="modal-footer">
+
+  <div class="d-flex w-100 justify-content-end">
+    <button mat-button color="warn" class="mr-2" (click)="closeModal('cancel')">
+      <span><i class="ic-cross mr-2"></i>Cancelar</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="closeModal('ok')">
+      <span><i class="ic-checkmark mr-2"></i>Ok</span>
+    </button>
+  </div>
+</div>

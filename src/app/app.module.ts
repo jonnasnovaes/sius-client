@@ -8,11 +8,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { VacinaModalComponent } from './dashboard/cadastrar-vacina/vacina-modal/vacina-modal.component';
+import { AlertModalComponent } from './core/alert-modal/alert-modal.component';
+import { ConfirmModalComponent } from './core/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    VacinaModalComponent,
+    AlertModalComponent,
+    ConfirmModalComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,30 @@
+.modal-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  & > span {
+    margin-left: 20px;
+    color: #003771;
+    font-size: 32px;
+  }
+
+  & > div > i {
+    color: #003771;
+    cursor: pointer;
+  }
+}
+
+.modal-content {
+  border: none;
+
+  & > .content {
+    margin-inline: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+label {
+  color: #003771;
+}
+
+

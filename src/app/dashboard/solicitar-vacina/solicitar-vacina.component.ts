@@ -1,25 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {Vacina} from '../../core/interfaces/Vacina';
+import {AlertModalComponent} from '../../core/alert-modal/alert-modal.component';
+import {CadastrarVacinaService} from '../cadastrar-vacina/cadastrar-vacina.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ConfirmModalComponent} from '../../core/confirm-modal/confirm-modal.component';
 
-export interface Vacina {
-  nome: string;
-  fabricante: string;
-  dataFabricacao: string;
-  quantidade: string;
-  solicitar: any;
-}
-
-const ELEMENT_DATA: Vacina[] = [
-  {nome: 'Gripe', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Covid 19', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Sarampo', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Febre Amarela', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Catapora', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Tuberculose', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Poliomielite', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Pneumonia', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  {nome: 'Tétano', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-  { nome: 'Rubélola', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', solicitar: ''},
-];
 
 @Component({
   selector: 'app-solicitar-vacina',
@@ -28,12 +13,57 @@ const ELEMENT_DATA: Vacina[] = [
 })
 export class SolicitarVacinaComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'fabricante', 'dataFabricacao', 'quantidade', 'solicitar'];
-  dataSource = ELEMENT_DATA;
+  loading = false;
 
-  constructor() { }
+  listaVacinas: Array<Vacina> = [];
+
+  constructor(
+    private modal: NgbModal,
+    private cadastrarVacinaService: CadastrarVacinaService
+  ) { }
 
   ngOnInit(): void {
+    this.getlistaVacina().then();
+  }
+
+  async getlistaVacina(): Promise<any> {
+
+    this.loading = true;
+
+    const response = await this.cadastrarVacinaService.httpGetVacinas();
+
+    if (response['status'] === 200) {
+      this.listaVacinas = [... response['body']];
+    }
+    else {
+      const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+      alertModal.componentInstance.message = 'Não foi possível carregar a lista de vacinas.';
+    }
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
+
+  acao(vacina: Vacina) {
+    const confirmModal = this.modal.open(ConfirmModalComponent, {size: 'md'});
+    confirmModal.componentInstance.message = `Deseja solicitar um novo lote da vacina ${vacina.nome} ?`;
+    confirmModal.result.then(async result => {
+
+      if (result === 'ok') {
+        // const response = await this.cadastrarVacinaService.httpDeleteVacinas(idVacina);
+
+        // if (response['status'] === 200) {
+        //   const retornoAlert = await this.appService.alertModal('Vacina deletada com sucesso !', true);
+        //   if (retornoAlert) {
+        //     await this.getlistaVacina();
+        //   }
+        // }
+        // else {
+        //   await this.appService.alertModal('Não foi possível deletar a vacina.', false);
+        // }
+      }
+    });
   }
 
 }

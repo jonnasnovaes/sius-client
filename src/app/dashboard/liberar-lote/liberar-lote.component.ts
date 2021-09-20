@@ -1,25 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {Vacina} from '../../core/interfaces/Vacina';
+import {AlertModalComponent} from '../../core/alert-modal/alert-modal.component';
+import {LiberarLoteService} from './liberar-lote.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ConfirmModalComponent} from '../../core/confirm-modal/confirm-modal.component';
+import {AppService} from '../../services/app.service';
 
-export interface Vacina {
-  nome: string;
-  fabricante: string;
-  numeroLote: string;
-  recebimento: string;
-}
-
-
-const ELEMENT_DATA: Vacina[] = [
-  {nome: 'Gripe', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Covid 19', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Sarampo', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Febre Amarela', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Catapora', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Tuberculose', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Poliomielite', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Pneumonia', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  {nome: 'Tétano', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-  { nome: 'Rubélola', fabricante: 'Janssen', numeroLote: '2021080392', recebimento: ''},
-];
 
 @Component({
   selector: 'app-liberar-lote',
@@ -28,12 +14,58 @@ const ELEMENT_DATA: Vacina[] = [
 })
 export class LiberarLoteComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'fabricante', 'numeroLote', 'recebimento'];
-  dataSource = ELEMENT_DATA;
+  listaVacinas: Array<Vacina> = [];
 
-  constructor() { }
+  loading = false;
+
+  constructor(
+    private modal: NgbModal,
+    private liberarLoteService: LiberarLoteService,
+    private appService: AppService
+  ) { }
 
   ngOnInit(): void {
+    this.getlistaLotes().then();
+  }
+
+  async getlistaLotes(): Promise<any> {
+
+    this.loading = true;
+
+    const response = await this.liberarLoteService.httpGetLotes();
+
+    if (response['status'] === 200) {
+      this.listaVacinas = [... response['body']];
+    }
+    else {
+      const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+      alertModal.componentInstance.message = 'Não foi possível carregar a lista de lotes de vacinas.';
+    }
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
+
+  acao(vacina) {
+    const confirmModal = this.modal.open(ConfirmModalComponent, {size: 'md'});
+    confirmModal.componentInstance.message = `Deseja liberar o lote da vacina ${vacina.nome} ?`;
+    confirmModal.result.then(async result => {
+
+      if (result === 'ok') {
+        const response = await this.liberarLoteService.httpPostLotes(vacina.id);
+
+        if (response['status'] === 200) {
+          const retornoAlert = await this.appService.alertModal(`Lote da vacina ${vacina.nome} liberado para envio.`, true);
+          if (retornoAlert) {
+            await this.getlistaLotes();
+          }
+        }
+        else {
+          await this.appService.alertModal('Não foi possível liberar o lote da vacina.', false);
+        }
+      }
+    });
   }
 
 }

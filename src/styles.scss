@@ -96,3 +96,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-shadow: inset 0 0 6px rgba(112, 130, 164, 0.4);
 }
 
+
+table {
+  width: 100%;
+}
+
+.content-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

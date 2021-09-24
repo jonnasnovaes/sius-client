@@ -4,6 +4,8 @@ import {AlertModalComponent} from '../../core/alert-modal/alert-modal.component'
 import {CadastrarVacinaService} from '../cadastrar-vacina/cadastrar-vacina.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ConfirmModalComponent} from '../../core/confirm-modal/confirm-modal.component';
+import {SolicitarVacinaService} from './solicitar-vacina.service';
+import {AppService} from '../../services/app.service';
 
 
 @Component({
@@ -19,7 +21,9 @@ export class SolicitarVacinaComponent implements OnInit {
 
   constructor(
     private modal: NgbModal,
-    private cadastrarVacinaService: CadastrarVacinaService
+    private cadastrarVacinaService: CadastrarVacinaService,
+    private solicitarVacina: SolicitarVacinaService,
+    private appService: AppService
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +37,19 @@ export class SolicitarVacinaComponent implements OnInit {
     const response = await this.cadastrarVacinaService.httpGetVacinas();
 
     if (response['status'] === 200) {
-      this.listaVacinas = [... response['body']];
+      const vacinasSolicitadas = await this.solicitarVacina.httpGetSolicitarLoteVacina();
+
+      if (vacinasSolicitadas['body'].length === 0) {
+        this.listaVacinas = [... response['body']];
+      }
+      else {
+        console.log(response['body']);
+        console.log(vacinasSolicitadas['body']);
+        this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
+      }
+
+      this.loading = false;
+
     }
     else {
       const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
@@ -51,19 +67,31 @@ export class SolicitarVacinaComponent implements OnInit {
     confirmModal.result.then(async result => {
 
       if (result === 'ok') {
-        // const response = await this.cadastrarVacinaService.httpDeleteVacinas(idVacina);
+        const response = await this.solicitarVacina.httpPutSolicitarLoteVacina(vacina);
 
-        // if (response['status'] === 200) {
-        //   const retornoAlert = await this.appService.alertModal('Vacina deletada com sucesso !', true);
-        //   if (retornoAlert) {
-        //     await this.getlistaVacina();
-        //   }
-        // }
-        // else {
-        //   await this.appService.alertModal('Não foi possível deletar a vacina.', false);
-        // }
+        if (response['status'] === 200) {
+          const retornoAlert = await this.appService.alertModal(`Lote da vacina ${vacina.nome} solicitado com sucesso.`, true);
+          if (retornoAlert) {
+            await this.getlistaVacina();
+          }
+        }
+        else {
+          await this.appService.alertModal(response['error'].detail, false);
+        }
       }
     });
+  }
+
+  async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {
+    let newListVacina: Array<Vacina> = [];
+    listaVacinaCompleta.map(v => {
+      listaVacinasSolicitadas.map(lv => {
+        if ((lv.liberado === true)) {
+          newListVacina.push(v);
+        }
+      });
+    });
+    return [... newListVacina];
   }
 
 }

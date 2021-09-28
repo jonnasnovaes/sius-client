@@ -39,14 +39,18 @@ export class SolicitarVacinaComponent implements OnInit {
     if (response['status'] === 200) {
       const vacinasSolicitadas = await this.solicitarVacina.httpGetSolicitarLoteVacina();
 
-      if (vacinasSolicitadas['body'].length === 0) {
-        this.listaVacinas = [... response['body']];
-      }
-      else {
-        console.log(response['body']);
-        console.log(vacinasSolicitadas['body']);
-        this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
-      }
+      console.log(vacinasSolicitadas);
+
+      this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
+
+      // if (vacinasSolicitadas['body'].length === 0) {
+      //   this.listaVacinas = [... response['body']];
+      // }
+      // else {
+      //   console.log(response['body']);
+      //   console.log(vacinasSolicitadas['body']);
+      //   this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
+      // }
 
       this.loading = false;
 
@@ -86,7 +90,7 @@ export class SolicitarVacinaComponent implements OnInit {
     let newListVacina: Array<Vacina> = [];
     listaVacinaCompleta.map(v => {
       listaVacinasSolicitadas.map(lv => {
-        if ((lv.liberado === true)) {
+        if ((lv.liberado === true && lv.recebido === true)) {
           newListVacina.push(v);
         }
       });

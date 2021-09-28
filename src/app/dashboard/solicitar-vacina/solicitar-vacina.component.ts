@@ -43,15 +43,6 @@ export class SolicitarVacinaComponent implements OnInit {
 
       this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
 
-      // if (vacinasSolicitadas['body'].length === 0) {
-      //   this.listaVacinas = [... response['body']];
-      // }
-      // else {
-      //   console.log(response['body']);
-      //   console.log(vacinasSolicitadas['body']);
-      //   this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
-      // }
-
       this.loading = false;
 
     }
@@ -71,7 +62,7 @@ export class SolicitarVacinaComponent implements OnInit {
     confirmModal.result.then(async result => {
 
       if (result === 'ok') {
-        const response = await this.solicitarVacina.httpPutSolicitarLoteVacina(vacina);
+        const response = await this.solicitarVacina.httpPutSolicitarLoteVacina(vacina, false, false);
 
         if (response['status'] === 200) {
           const retornoAlert = await this.appService.alertModal(`Lote da vacina ${vacina.nome} solicitado com sucesso.`, true);

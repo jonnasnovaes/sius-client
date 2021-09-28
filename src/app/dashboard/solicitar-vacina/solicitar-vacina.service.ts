@@ -14,9 +14,9 @@ export class SolicitarVacinaService {
     return await this.http.get(environment.api + 'solicitar-vacina', {observe: 'response'}).toPromise();
   }
 
-  async httpPutSolicitarLoteVacina(vacina: Vacina): Promise<any> {
+  async httpPutSolicitarLoteVacina(vacina: Vacina, liberado: boolean, recebido: boolean): Promise<any> {
     return await this.http.put(environment.api + 'solicitar-vacina',
-      {idVacina: vacina.id, liberado: false},
+      {idVacina: vacina.id, liberado, recebido},
       {observe: 'response'}
     ).toPromise();
   }

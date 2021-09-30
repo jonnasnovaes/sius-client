@@ -79,9 +79,13 @@ export class SolicitarVacinaComponent implements OnInit {
 
   async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {
     let newListVacina: Array<Vacina> = [];
+    console.log(listaVacinasSolicitadas);
+    console.log(listaVacinaCompleta);
     listaVacinaCompleta.map(v => {
       listaVacinasSolicitadas.map(lv => {
-        if ((lv.liberado === true && lv.recebido === true)) {
+        const itemNewListExist = newListVacina.find(nlv => nlv.id === v.id);
+        console.log(itemNewListExist);
+        if (lv.liberado === true && lv.recebido === true && itemNewListExist === undefined && v.id === lv.idVacina) {
           newListVacina.push(v);
         }
       });

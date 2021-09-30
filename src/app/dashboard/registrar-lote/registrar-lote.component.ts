@@ -86,17 +86,30 @@ export class RegistrarLoteComponent implements OnInit {
     });
   }
 
-
   async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {
     let newListVacina: Array<Vacina> = [];
     listaVacinaCompleta.map(v => {
       listaVacinasSolicitadas.map(lv => {
-        if ((lv.liberado === true && lv.recebido === false)) {
+        const itemNewListExist = newListVacina.find(nlv => nlv.id === v.id);
+
+        if (lv.liberado === true && lv.recebido === false && itemNewListExist === undefined && v.id === lv.idVacina) {
           newListVacina.push(v);
         }
       });
     });
     return [... newListVacina];
   }
+
+  // async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {
+  //   let newListVacina: Array<Vacina> = [];
+  //   listaVacinaCompleta.map(v => {
+  //     listaVacinasSolicitadas.map(lv => {
+  //       if ((lv.liberado === true && lv.recebido === false)) {
+  //         newListVacina.push(v);
+  //       }
+  //     });
+  //   });
+  //   return [... newListVacina];
+  // }
 
 }

@@ -51,10 +51,10 @@ export class RegistrarVacinacaoComponent implements OnInit {
       let mensagem = '';
 
       if (r === 'ok') {
-        mensagem = 'Vacina cadastrada com sucesso!';
+        mensagem = 'Registro de vacina realizado com sucesso!';
       }
       else if (r === 'error') {
-        mensagem = 'Erro do sistema ao tentar cadastrar a vacina.';
+        mensagem = 'Erro do sistema ao tentar registrar a vacinacao.';
       }
 
       if (mensagem !== '') {

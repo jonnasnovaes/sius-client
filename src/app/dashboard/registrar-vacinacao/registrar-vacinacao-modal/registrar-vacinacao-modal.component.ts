@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {RegistrarVacinacao} from '../../../core/interfaces/Vacina';
+import {RegistrarVacinacao, Vacina} from '../../../core/interfaces/Vacina';
 import {RegistrarVacinacaoService} from '../registrar-vacinacao.service';
+import {CadastrarVacinaService} from '../../cadastrar-vacina/cadastrar-vacina.service';
+import {AlertModalComponent} from '../../../core/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-registrar-vacinacao-modal',
@@ -23,12 +25,28 @@ export class RegistrarVacinacaoModalComponent implements OnInit {
     dataVacinacao: new FormControl('', Validators.required),
   });
 
+  listaVacina: Array<Vacina> = [];
+
   constructor(
     private activeModal: NgbActiveModal,
-    private registrarVacinacaoService: RegistrarVacinacaoService
+    private registrarVacinacaoService: RegistrarVacinacaoService,
+    private cadastrarVacinaService: CadastrarVacinaService,
+    private modal: NgbModal
   ) { }
 
   ngOnInit(): void {
+    this.getVacinas().then();
+  }
+
+  async getVacinas(): Promise<any> {
+    const response = await this.cadastrarVacinaService.httpGetVacinas();
+    if (response['status'] === 200) {
+      this.listaVacina = [... response['body']];
+    }
+    else {
+      const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+      alertModal.componentInstance.message = 'Não foi possível carregar a lista de vacinas para um novo registro';
+    }
   }
 
   async registrarVacinacao(): Promise<any> {

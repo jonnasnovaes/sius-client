@@ -16,6 +16,10 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
+        path: 'relatorio-dashboard',
+        loadChildren: () => import('./relatorio-dashboard/relatorio-dashboard.module').then(m => m.RelatorioDashboardModule),
+      },
+      {
         path: 'calendario-vacinacao',
         loadChildren: () => import('./calendario-vacinacao/calendario-vacinacao.module').then(m => m.CalendarioVacinacaoModule),
       },

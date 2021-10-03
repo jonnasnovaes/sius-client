@@ -7,11 +7,12 @@ import {SharedModule} from './shared/shared.module';
 import {HeaderModule} from './shared/header/header.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RelatorioDashboardComponent } from './relatorio-dashboard/relatorio-dashboard.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     // BrowserModule,

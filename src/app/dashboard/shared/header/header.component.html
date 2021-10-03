@@ -33,6 +33,12 @@
 
     <mat-selection-list class="pt-0" [multiple]="false">
 
+      <mat-list-option routerLink="relatorio-dashboard">
+        <div class="menu-item-list">
+          <i class="ic-pie-chart mr-3"></i> Dashboard
+        </div>
+      </mat-list-option>
+
       <div *ngIf="perfilAtivo === 1">
         <mat-nav-list>
           <div class="mat-list-title">

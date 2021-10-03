@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { VacinaModalComponent } from './dashboard/cadastrar-vacina/vacina-modal/vacina-modal.component';
 import { AlertModalComponent } from './core/alert-modal/alert-modal.component';
 import { ConfirmModalComponent } from './core/confirm-modal/confirm-modal.component';
+import {RegistrarVacinacaoModalComponent} from './dashboard/registrar-vacinacao/registrar-vacinacao-modal/registrar-vacinacao-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ConfirmModalComponent } from './core/confirm-modal/confirm-modal.compon
     LoginComponent,
     VacinaModalComponent,
     AlertModalComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    RegistrarVacinacaoModalComponent
   ],
   imports: [
     CommonModule,

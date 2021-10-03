@@ -1,25 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Vacina {
-  nome: string;
-  fabricante: string;
-  dataFabricacao: string;
-  quantidade: string;
-  registrar: any;
-}
-
-const ELEMENT_DATA: Vacina[] = [
-  {nome: 'Gripe', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Covid 19', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Sarampo', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Febre Amarela', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Catapora', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Tuberculose', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Poliomielite', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Pneumonia', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  {nome: 'Tétano', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-  { nome: 'Rubélola', fabricante: 'Janssen', dataFabricacao: '01/03/2021', quantidade: '2', registrar: ''},
-];
+import {VacinaModalComponent} from '../cadastrar-vacina/vacina-modal/vacina-modal.component';
+import {AlertModalComponent} from '../../core/alert-modal/alert-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {RegistrarVacinacaoModalComponent} from './registrar-vacinacao-modal/registrar-vacinacao-modal.component';
+import {RegistrarVacinacao} from '../../core/interfaces/Vacina';
+import {RegistrarVacinacaoService} from './registrar-vacinacao.service';
 
 @Component({
   selector: 'app-registrar-vacinacao',
@@ -28,12 +13,58 @@ const ELEMENT_DATA: Vacina[] = [
 })
 export class RegistrarVacinacaoComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'fabricante', 'dataFabricacao', 'quantidade', 'registrar'];
-  dataSource = ELEMENT_DATA;
+  listaRegistro: Array<RegistrarVacinacao> = [];
 
-  constructor() { }
+  loading = false;
+
+  constructor(
+    private modal: NgbModal,
+    private registrarVacinacaoService: RegistrarVacinacaoService
+  ) { }
 
   ngOnInit(): void {
+    this.getlistaRegistroVacina().then();
+  }
+
+  async getlistaRegistroVacina(): Promise<any> {
+
+    this.loading = true;
+
+    const response = await this.registrarVacinacaoService.httpGetRegistroVacinacao();
+
+    if (response['status'] === 200) {
+      this.listaRegistro = [... response['body']];
+    }
+    else {
+      const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+      alertModal.componentInstance.message = 'Não foi possível carregar a lista de vacinas registradas.';
+    }
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
+
+  novoRegistro(): void {
+    const modal = this.modal.open(RegistrarVacinacaoModalComponent, {size: 'lg'});
+    modal.result.then(r => {
+      let mensagem = '';
+
+      if (r === 'ok') {
+        mensagem = 'Vacina cadastrada com sucesso!';
+      }
+      else if (r === 'error') {
+        mensagem = 'Erro do sistema ao tentar cadastrar a vacina.';
+      }
+
+      if (mensagem !== '') {
+        const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+        alertModal.componentInstance.message = mensagem;
+        alertModal.result.then(async result => {
+          await this.getlistaRegistroVacina();
+        });
+      }
+    });
   }
 
 }

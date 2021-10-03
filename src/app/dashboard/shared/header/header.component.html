@@ -54,6 +54,14 @@
 
         <mat-divider></mat-divider>
 
+        <mat-list-option routerLink="registrar-vacinacao">
+          <div class="menu-item-list">
+            <i class="ic-barcode mr-3"></i> Registrar Vacinação
+          </div>
+        </mat-list-option>
+
+        <mat-divider></mat-divider>
+
 <!--        <mat-list-option>-->
 <!--          <div class="menu-item-list" routerLink="registrar-caderneta">-->
 <!--            <i class="ic-profile mr-3"></i> Registrar Caderneta-->
@@ -72,13 +80,6 @@
       </mat-nav-list>
 
       <div *ngIf="perfilAtivo === 1">
-        <mat-list-option routerLink="registrar-vacinacao">
-          <div class="menu-item-list">
-            <i class="ic-barcode mr-3"></i> Registrar Vacinação
-          </div>
-        </mat-list-option>
-
-        <mat-divider></mat-divider>
 
         <mat-list-option routerLink="verificar-estoque">
           <div class="menu-item-list">

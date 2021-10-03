@@ -99,6 +99,12 @@ mat-drawer {
   color: white !important;
 }
 
+// Ativa o link sem a necessidade de clicar no item
+.active-link {
+  background-color: $laranja-sius !important;
+  color: white !important;
+}
+
 // Controla o HOVER do item do menu lateral
 .mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {
   //background-color: #989898;

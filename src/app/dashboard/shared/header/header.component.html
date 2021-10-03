@@ -33,7 +33,7 @@
 
     <mat-selection-list class="pt-0" [multiple]="false">
 
-      <mat-list-option routerLink="relatorio-dashboard">
+      <mat-list-option routerLink="relatorio-dashboard" [routerLinkActive]="'active-link'">
         <div class="menu-item-list">
           <i class="ic-pie-chart mr-3"></i> Dashboard
         </div>
@@ -46,7 +46,7 @@
           </div>
         </mat-nav-list>
 
-        <mat-list-option routerLink="calendario-vacinacao">
+        <mat-list-option routerLink="calendario-vacinacao" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-calendar mr-3"></i> Calendário de Vacinação
           </div>
@@ -54,7 +54,7 @@
 
         <mat-divider></mat-divider>
 
-        <mat-list-option routerLink="registrar-vacinacao">
+        <mat-list-option routerLink="registrar-vacinacao" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-barcode mr-3"></i> Registrar Vacinação
           </div>
@@ -81,7 +81,7 @@
 
       <div *ngIf="perfilAtivo === 1">
 
-        <mat-list-option routerLink="verificar-estoque">
+        <mat-list-option routerLink="verificar-estoque" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-file-text mr-3"></i> Verificar Estoque
           </div>
@@ -89,7 +89,7 @@
 
         <mat-divider></mat-divider>
 
-        <mat-list-option routerLink="solicitar-vacina">
+        <mat-list-option routerLink="solicitar-vacina" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-loop mr-3"></i> Solicitar Vacina
           </div>
@@ -97,7 +97,7 @@
 
         <mat-divider></mat-divider>
 
-        <mat-list-option routerLink="registrar-lote">
+        <mat-list-option routerLink="registrar-lote" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-clipboard mr-3"></i> Registrar Lote
           </div>
@@ -106,14 +106,14 @@
 
       <div *ngIf="perfilAtivo === 0">
         <mat-divider></mat-divider>
-        <mat-list-option routerLink="cadastrar-vacina">
+        <mat-list-option routerLink="cadastrar-vacina" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-pen mr-3"></i> Cadastrar Vacina
           </div>
         </mat-list-option>
 
         <mat-divider></mat-divider>
-        <mat-list-option routerLink="liberar-lote">
+        <mat-list-option routerLink="liberar-lote" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
             <i class="ic-truck mr-3"></i> Liberar Lote
           </div>

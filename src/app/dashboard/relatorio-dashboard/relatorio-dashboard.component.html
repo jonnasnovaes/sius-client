@@ -1,0 +1,33 @@
+<div class="page">
+
+  <div class="page-content">
+
+    <div class="page-content-title">
+      <span>Dashboard</span>
+    </div>
+    <div class="page-content-line"></div>
+
+    <div class="content">
+
+      <div class="d-flex">
+        <div class="flex-fill ml-2 mr-5"><h2>Gráfico 1</h2></div>
+        <div class="flex-fill"><h2>Gráfico 2</h2></div>
+      </div>
+
+      <div class="grafico mb-4">
+        <div class="mr-3">
+          <app-grafico [dados]="chart1"></app-grafico>
+        </div>
+        <div class="ml-3">
+          <app-grafico [dados]="chart2"></app-grafico>
+        </div>
+      </div>
+
+      <h2 class="mt-4 ml-2">Gráfico 3</h2>
+      <div class="grafico-line">
+        <app-grafico [dados]="chart3"></app-grafico>
+      </div>
+
+    </div>
+  </div>
+</div>

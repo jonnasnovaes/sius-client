@@ -1,0 +1,35 @@
+@import "src/style/color-var";
+
+.content {
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.grafico {
+  background-color: white;
+  display: flex;
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    border: 2px solid $cinza-1;
+    border-radius: 15px;
+    height: 300px;
+  }
+
+}
+
+.grafico-line {
+  background-color: white;
+  border: 2px solid $cinza-1;
+  border-radius: 15px;
+  width: 100%;
+  height: 300px;
+}
+
+h2 {
+  color: $azul-2;
+}

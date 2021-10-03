@@ -24,4 +24,9 @@ export class HeaderComponent implements OnInit {
     await this.authService.logout();
   }
 
+  async redirectHome(): Promise<any> {
+    await this.router.navigateByUrl('/dashboard/relatorio-dashboard');
+    window.location.reload();
+  }
+
 }

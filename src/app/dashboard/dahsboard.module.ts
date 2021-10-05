@@ -8,6 +8,7 @@ import {HeaderModule} from './shared/header/header.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RelatorioDashboardComponent } from './relatorio-dashboard/relatorio-dashboard.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 @NgModule({

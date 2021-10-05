@@ -50,6 +50,10 @@ const routes: Routes = [
       {
         path: 'liberar-lote',
         loadChildren: () => import('./liberar-lote/liberar-lote.module').then(m => m.LiberarLoteModule),
+      },
+      {
+        path: 'usuarios',
+        loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule),
       }
     ]
   }

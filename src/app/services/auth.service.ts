@@ -17,15 +17,21 @@ export class AuthService {
   async login(login): Promise<any> {
     const response = await this.http.post(environment.api + 'login', login, {observe: 'response'}).toPromise();
 
+    localStorage.setItem('Nome', response['body']['nome']);
+
     if (response.status === 200) {
       const dadosResposta = response.body;
       if (dadosResposta['perfil'] === 0) {
         localStorage.setItem('Perfil', '0');
         return 0;
       }
-      else {
+      else if (dadosResposta['perfil'] === 1) {
         localStorage.setItem('Perfil', '1');
         return 1;
+      }
+      else if (dadosResposta['perfil'] === 2) {
+        localStorage.setItem('Perfil', '2');
+        return 2;
       }
     }
     else {
@@ -35,11 +41,12 @@ export class AuthService {
 
   async logout(): Promise<any> {
     localStorage.removeItem('Perfil');
+    localStorage.removeItem('Nome');
     await this.router.navigateByUrl('login');
   }
 
-  getPerfil(): number {
-    return Number(localStorage.getItem('Perfil'));
+  getDataUser(): any {
+    return {nome: localStorage.getItem('Nome'), perfil: Number(localStorage.getItem('Perfil'))};
   }
 
 }

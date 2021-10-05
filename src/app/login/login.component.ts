@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
     if (perfilAtivo === 0) {
       await this.router.navigateByUrl('dashboard/cadastrar-vacina');
     }
-    else if (perfilAtivo === 1) {
-      await this.router.navigateByUrl('dashboard/calendario-vacinacao');
+    else if (perfilAtivo === 1 || perfilAtivo === 2) {
+      await this.router.navigateByUrl('dashboard/relatorio-dashboard');
     }
     else if (!perfilAtivo) {
       console.log('Erro de login');

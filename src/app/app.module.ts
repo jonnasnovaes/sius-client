@@ -12,6 +12,7 @@ import { VacinaModalComponent } from './dashboard/cadastrar-vacina/vacina-modal/
 import { AlertModalComponent } from './core/alert-modal/alert-modal.component';
 import { ConfirmModalComponent } from './core/confirm-modal/confirm-modal.component';
 import {RegistrarVacinacaoModalComponent} from './dashboard/registrar-vacinacao/registrar-vacinacao-modal/registrar-vacinacao-modal.component';
+import {UsuarioModalComponent} from './dashboard/usuarios/usuario-modal/usuario-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {RegistrarVacinacaoModalComponent} from './dashboard/registrar-vacinacao/
     VacinaModalComponent,
     AlertModalComponent,
     ConfirmModalComponent,
+    UsuarioModalComponent,
     RegistrarVacinacaoModalComponent
   ],
   imports: [

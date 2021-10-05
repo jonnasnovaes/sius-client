@@ -9,6 +9,8 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  usuario: any;
+
   perfilAtivo: number;
 
   constructor(
@@ -17,7 +19,17 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.perfilAtivo = this.authService.getPerfil();
+    this.usuario = this.authService.getDataUser();
+
+    if (this.usuario.perfil === 0) {
+      this.usuario.perfilAtivo = 'Secretaria de Saúde';
+    }
+    else if (this.usuario.perfil === 1) {
+      this.usuario.perfilAtivo = 'Enfermeiro';
+    }
+    else if (this.usuario.perfil === 2) {
+      this.usuario.perfilAtivo = 'Coordenador';
+    }
   }
 
   async logout(): Promise<any> {

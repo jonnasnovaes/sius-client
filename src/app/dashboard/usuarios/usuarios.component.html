@@ -1,0 +1,58 @@
+<div class="page">
+
+  <div class="page-content">
+
+    <div class="page-content-title d-flex align-items-center">
+      <span class="w-100">Usuarios</span>
+
+      <div class="d-flex justify-content-end align-items-center w-100">
+        <button mat-raised-button color="primary" (click)="novoUsuario()">
+          <i class="ic-plus mr-2"></i>Novo Usuário
+        </button>
+      </div>
+
+    </div>
+    <div class="page-content-line"></div>
+
+    <div class="content">
+
+      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaUsuario.length === 0 && !loading">
+        <span>Lista Vazia</span>
+      </div>
+
+      <div class="content-loader">
+        <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
+      </div>
+
+
+      <div *ngIf="this.listaUsuario.length !== 0 && !loading">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Nome do usuario</th>
+            <th scope="col">Email</th>
+            <th scope="col">Perfil</th>
+            <th scope="col" class="d-flex justify-content-center">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let usuario of listaUsuario">
+            <td>{{usuario.nome}}</td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.perfil === 1 ? 'Enfermeiro' : 'Coordenador'}}</td>
+            <td class="d-flex justify-content-center">
+              <button mat-flat-button color="primary" class="mr-2" (click)="acao('edit', usuario.id)">
+                <i class="ic-pencil mr-2"></i>Editar
+              </button>
+              <button mat-flat-button color="warn" (click)="acao('delete', usuario.id)">
+                <i class="ic-cross mr-2"></i>Excluir
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

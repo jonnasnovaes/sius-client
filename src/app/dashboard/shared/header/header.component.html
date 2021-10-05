@@ -11,8 +11,7 @@
 
       <img height="40" width="40" class="rounded-circle" src="assets/perfil-anonimo.jpg" />
 
-      <span class="ml-3 mr-2" *ngIf="perfilAtivo === 0">Secretaria de Saúde</span>
-      <span class="ml-3 mr-2" *ngIf="perfilAtivo === 1">Enfermeiro / Coordenador</span>
+      <span class="ml-3 mr-2">{{ usuario.nome + ' / ' + usuario.perfilAtivo}}</span>
 
       <button class="btn-menu-option" mat-icon-button [matMenuTriggerFor]="menu">
         <i class="ic-ctrl seta-option"></i>
@@ -39,7 +38,7 @@
         </div>
       </mat-list-option>
 
-      <div *ngIf="perfilAtivo === 1">
+      <div *ngIf="usuario.perfil === 1 || usuario.perfil === 2">
         <mat-nav-list>
           <div class="mat-list-title">
             <span>PACIENTES</span>
@@ -79,7 +78,7 @@
         </div>
       </mat-nav-list>
 
-      <div *ngIf="perfilAtivo === 1">
+      <div *ngIf="usuario.perfil === 1 || usuario.perfil === 2">
 
         <mat-list-option routerLink="verificar-estoque" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">
@@ -104,7 +103,23 @@
         </mat-list-option>
       </div>
 
-      <div *ngIf="perfilAtivo === 0">
+
+      <div *ngIf="usuario.perfil === 2">
+        <mat-nav-list>
+          <div class="mat-list-title">
+            <span>CONFIGURAÇÕES</span>
+          </div>
+        </mat-nav-list>
+
+        <mat-divider></mat-divider>
+        <mat-list-option routerLink="usuarios" [routerLinkActive]="'active-link'">
+          <div class="menu-item-list">
+            <i class="ic-users mr-3"></i> Gerênciar Usuarios
+          </div>
+        </mat-list-option>
+      </div>
+
+      <div *ngIf="usuario.perfil === 0">
         <mat-divider></mat-divider>
         <mat-list-option routerLink="cadastrar-vacina" [routerLinkActive]="'active-link'">
           <div class="menu-item-list">

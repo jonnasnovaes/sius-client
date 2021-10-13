@@ -15,8 +15,14 @@
             <input class="form-control" type="password" placeholder="Senha" formControlName="senha">
           </div>
 
+
           <div class="content-footer">
-            <button mat-raised-button (click)="logar()">Logar</button>
+            <button mat-raised-button (click)="logar()">
+              <div *ngIf="loading" class="d-flex justify-content-center align-items-center py-1">
+                <div class="spinner-border" role="status"><span class="sr-only"></span></div>
+              </div>
+              <span *ngIf="!loading">Logar</span>
+            </button>
           </div>
 
         </div>

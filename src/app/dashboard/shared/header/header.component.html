@@ -32,13 +32,14 @@
 
     <mat-selection-list class="pt-0" [multiple]="false">
 
-      <mat-list-option routerLink="relatorio-dashboard" [routerLinkActive]="'active-link'">
-        <div class="menu-item-list">
-          <i class="ic-pie-chart mr-3"></i> Dashboard
-        </div>
-      </mat-list-option>
-
       <div *ngIf="usuario.perfil === 1 || usuario.perfil === 2">
+
+          <mat-list-option routerLink="relatorio-dashboard" [routerLinkActive]="'active-link'">
+            <div class="menu-item-list">
+              <i class="ic-pie-chart mr-3"></i> Dashboard
+            </div>
+          </mat-list-option>
+
         <mat-nav-list>
           <div class="mat-list-title">
             <span>PACIENTES</span>

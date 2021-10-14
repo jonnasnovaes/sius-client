@@ -18,4 +18,8 @@ export class VerificarEstoqueService {
     return await this.http.put(environment.api + 'estoque-vacina', vacina, {observe: 'response'}).toPromise();
   }
 
+  async httpPutEditarEstoqueVacina(vacinaEstoque: VacinaEstoque): Promise<any> {
+    return await this.http.put(environment.api + 'estoque-vacina/editar', vacinaEstoque, {observe: 'response'}).toPromise();
+  }
+
 }

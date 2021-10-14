@@ -25,7 +25,7 @@
           <th scope="col">Nome da Vacina</th>
           <th scope="col">Fabricante</th>
           <th scope="col">Quantidade</th>
-          <th scope="col" class="d-flex justify-content-center">Ações</th>
+          <th scope="col" class="d-flex" [ngClass]="usuario.perfil === 2 ? 'acao' : 'd-flex justify-content-center'">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -33,9 +33,12 @@
           <td>{{vacina.nome}}</td>
           <td>{{vacina.fabricante}}</td>
           <td>{{vacina.quantidade}}</td>
-          <td class="d-flex justify-content-center">
+          <td class="d-flex" [ngClass]="usuario.perfil === 2 ? 'justify-content-end' : 'justify-content-center'">
             <button mat-flat-button color="warn" class="mr-2" (click)="acao(vacina)" [disabled]="vacina.quantidade === 0">
               <i class="ic-minus mr-2"></i>Dar baixa
+            </button>
+            <button *ngIf="usuario.perfil === 2" mat-flat-button color="primary"  (click)="editarEstoque(vacina)">
+              <i class="ic-pencil mr-2"></i>Editar Estoque
             </button>
           </td>
         </tr>

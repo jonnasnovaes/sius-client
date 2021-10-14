@@ -6,6 +6,9 @@ import {CadastrarVacinaService} from '../cadastrar-vacina/cadastrar-vacina.servi
 import {AlertModalComponent} from '../../core/alert-modal/alert-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {VerificarEstoqueService} from './verificar-estoque.service';
+import {Usuario} from "../../core/interfaces/Usuario";
+import {AuthService} from "../../services/auth.service";
+import {EditarEstoqueModalComponent} from "./editar-estoque-modal/editar-estoque-modal.component";
 
 @Component({
   selector: 'app-verificar-estoque',
@@ -14,18 +17,22 @@ import {VerificarEstoqueService} from './verificar-estoque.service';
 })
 export class VerificarEstoqueComponent implements OnInit {
 
+  usuario: Usuario;
+
   loading = false;
 
   listaVacinas: Array<VacinaEstoque> = [];
 
   constructor(
     private appService: AppService,
+    private authService: AuthService,
     private cadastrarVacinaService: CadastrarVacinaService,
     private verificarEstoqueService: VerificarEstoqueService,
     private modal: NgbModal
   ) { }
 
   ngOnInit(): void {
+    this.usuario = this.authService.getDataUser();
     this.getlistaVacina().then();
   }
 
@@ -62,6 +69,30 @@ export class VerificarEstoqueComponent implements OnInit {
 
         if (response['status'] === 200) {
           const retornoAlert = await this.appService.alertModal(`Unidade da vacina ${vacina.nome} registrada com sucesso.`, true);
+          if (retornoAlert) {
+            await this.getlistaVacina();
+          }
+        }
+        else {
+          await this.appService.alertModal(response['error'].detail, false);
+        }
+      }
+    });
+  }
+
+  editarEstoque(vacinaEstoque: VacinaEstoque) {
+    const confirmModal = this.modal.open(EditarEstoqueModalComponent, {size: 'md'});
+    confirmModal.componentInstance.vacinaEstoque = vacinaEstoque;
+    confirmModal.result.then(async result => {
+
+      if (result.status === 'ok') {
+
+        vacinaEstoque.quantidade = result.quantidade;
+
+        const response = await this.verificarEstoqueService.httpPutEditarEstoqueVacina(vacinaEstoque);
+
+        if (response['status'] === 200) {
+          const retornoAlert = await this.appService.alertModal(`Estoque da vacina ${vacinaEstoque.nome} alterado com sucesso.`, true);
           if (retornoAlert) {
             await this.getlistaVacina();
           }

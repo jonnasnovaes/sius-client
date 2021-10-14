@@ -8,7 +8,7 @@ import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    VerificarEstoqueComponent
+    VerificarEstoqueComponent,
   ],
   imports: [
     VerificarEstoqueRoutingModule,

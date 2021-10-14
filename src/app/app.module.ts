@@ -13,6 +13,7 @@ import { AlertModalComponent } from './core/alert-modal/alert-modal.component';
 import { ConfirmModalComponent } from './core/confirm-modal/confirm-modal.component';
 import {RegistrarVacinacaoModalComponent} from './dashboard/registrar-vacinacao/registrar-vacinacao-modal/registrar-vacinacao-modal.component';
 import {UsuarioModalComponent} from './dashboard/usuarios/usuario-modal/usuario-modal.component';
+import {EditarEstoqueModalComponent} from "./dashboard/verificar-estoque/editar-estoque-modal/editar-estoque-modal.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {UsuarioModalComponent} from './dashboard/usuarios/usuario-modal/usuario-
     AlertModalComponent,
     ConfirmModalComponent,
     UsuarioModalComponent,
-    RegistrarVacinacaoModalComponent
+    RegistrarVacinacaoModalComponent,
+    EditarEstoqueModalComponent
   ],
   imports: [
     CommonModule,

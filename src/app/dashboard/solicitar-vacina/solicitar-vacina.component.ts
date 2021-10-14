@@ -117,7 +117,7 @@ export class SolicitarVacinaComponent implements OnInit {
       }
     }
     else {
-      if (statusSolicitacaoVacina.recebido) {
+      if (statusSolicitacaoVacina.liberado) {
         return true;
       }
     }

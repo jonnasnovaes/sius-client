@@ -24,16 +24,19 @@
           <tr>
             <th scope="col">Nome da Vacina</th>
             <th scope="col">Fabricante</th>
-            <th scope="col" class="d-flex justify-content-center">Ações</th>
+            <th scope="col" [ngClass]="usuario.perfil === 2 ? 'acao' : 'd-flex justify-content-center'">Ações</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let vacina of listaVacinas">
             <td>{{vacina.nome}}</td>
             <td>{{vacina.fabricante}}</td>
-            <td class="d-flex justify-content-center">
-              <button mat-flat-button color="primary" class="mr-2" (click)="acao(vacina)">
+            <td class="d-flex" [ngClass]="usuario.perfil === 2 ? 'justify-content-end' : 'justify-content-center'">
+              <button mat-flat-button color="primary" class="mr-2" (click)="acao(vacina)" [disabled]="statusSolicitacaoVacina(vacina, 'solicitar')">
                 <i class="ic-plus mr-2"></i>Solicitar
+              </button>
+              <button *ngIf="usuario.perfil === 2" mat-flat-button color="warn" (click)="cancelarSolicitacao(vacina)" [disabled]="statusSolicitacaoVacina(vacina, 'cancelar')">
+                <i class="ic-cancel-circle mr-2"></i>Cancelar Solicitação
               </button>
             </td>
           </tr>

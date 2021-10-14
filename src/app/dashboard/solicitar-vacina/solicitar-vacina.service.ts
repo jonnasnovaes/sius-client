@@ -21,4 +21,11 @@ export class SolicitarVacinaService {
     ).toPromise();
   }
 
+  async httpPutSolicitarLoteVacinaCancelado(vacina: Vacina, liberado: boolean, recebido: boolean): Promise<any> {
+    return await this.http.put(environment.api + 'solicitar-vacina/cancelado',
+      {idVacina: vacina.id, liberado, recebido},
+      {observe: 'response'}
+    ).toPromise();
+  }
+
 }

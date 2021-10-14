@@ -21,3 +21,10 @@ export interface RegistrarVacinacao {
   vacina: string;
   dataVacinacao: string;
 }
+
+export interface StatusSolicitacaoVacina {
+  id: number;
+  idVacina: number;
+  liberado: boolean;
+  recebido: boolean;
+}

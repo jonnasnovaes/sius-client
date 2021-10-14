@@ -34,7 +34,7 @@
           <td>{{vacina.fabricante}}</td>
           <td>{{vacina.quantidade}}</td>
           <td class="d-flex justify-content-center">
-            <button mat-flat-button color="warn" class="mr-2" (click)="acao(vacina)">
+            <button mat-flat-button color="warn" class="mr-2" (click)="acao(vacina)" [disabled]="vacina.quantidade === 0">
               <i class="ic-minus mr-2"></i>Dar baixa
             </button>
           </td>

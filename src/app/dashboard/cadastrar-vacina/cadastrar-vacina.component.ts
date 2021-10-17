@@ -7,27 +7,8 @@ import {HttpResponse} from '@angular/common/http';
 import {Vacina} from '../../core/interfaces/Vacina';
 import {AppService} from '../../services/app.service';
 import {ConfirmModalComponent} from '../../core/confirm-modal/confirm-modal.component';
+import {FormControl, FormGroup} from '@angular/forms';
 
-// export interface Vacina {
-//   nome: string;
-//   fabricante: string;
-//   numeroRegistro: string;
-//   recebimento: string;
-// }
-
-
-// const ELEMENT_DATA: Vacina[] = [
-//   {nome: 'Gripe', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Covid 19', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Sarampo', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Febre Amarela', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Catapora', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Tuberculose', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Poliomielite', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Pneumonia', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   {nome: 'Tétano', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-//   { nome: 'Rubélola', fabricante: 'Janssen', numeroRegistro: '2021080392', recebimento: ''},
-// ];
 
 @Component({
   selector: 'app-cadastrar-vacina',
@@ -36,10 +17,8 @@ import {ConfirmModalComponent} from '../../core/confirm-modal/confirm-modal.comp
 })
 export class CadastrarVacinaComponent implements OnInit {
 
-  // displayedColumns: string[] = ['nome', 'fabricante', 'numeroRegistro', 'recebimento'];
-  // dataSource = ELEMENT_DATA;
-
   listaVacinas: Array<Vacina> = [];
+  listaVacinasFilter: Array<Vacina> = [];
 
   loading = false;
 
@@ -61,6 +40,7 @@ export class CadastrarVacinaComponent implements OnInit {
 
     if (response['status'] === 200) {
       this.listaVacinas = [... response['body']];
+      this.listaVacinasFilter = [... this.listaVacinas];
     }
     else {
       const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
@@ -144,6 +124,30 @@ export class CadastrarVacinaComponent implements OnInit {
         });
       }
 
+    }
+  }
+
+
+  abrirBula(bula: string): void {
+    window.open(`http://localhost:5000/bulas/${bula}`);
+  }
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaVacinasFilter = [... this.listaVacinas];
+    }
+    else {
+      const newListVacinas: Array<Vacina> = [];
+
+      this.listaVacinas.map(v => {
+        if (v.nome.toUpperCase().match(value)) {
+          newListVacinas.push(v);
+        }
+      });
+
+      this.listaVacinasFilter = [... newListVacinas];
     }
   }
 

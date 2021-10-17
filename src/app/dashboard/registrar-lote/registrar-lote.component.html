@@ -9,16 +9,20 @@
 
     <div class="content">
 
-      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaVacinas.length === 0 && !loading">
-        <span>Lista Vazia</span>
-      </div>
-
       <div class="content-loader">
         <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
       </div>
 
+      <div *ngIf="this.listaVacinasFilter.length !== 0 && !loading" class="mb-3 search">
+        <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+        <i class="ic-search"></i>
+      </div>
 
-      <div *ngIf="this.listaVacinas.length !== 0 && !loading">
+      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaVacinasFilter.length === 0 && !loading">
+        <span>Lista Vazia</span>
+      </div>
+
+      <div *ngIf="this.listaVacinasFilter.length !== 0 && !loading">
         <table class="table table-hover">
           <thead>
           <tr>
@@ -28,7 +32,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let vacina of listaVacinas">
+          <tr *ngFor="let vacina of listaVacinasFilter">
             <td>{{vacina.nome}}</td>
             <td>{{vacina.fabricante}}</td>
             <td class="d-flex justify-content-center">

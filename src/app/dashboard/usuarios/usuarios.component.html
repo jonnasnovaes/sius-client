@@ -16,16 +16,20 @@
 
     <div class="content">
 
-      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaUsuario.length === 0 && !loading">
-        <span>Lista Vazia</span>
-      </div>
-
       <div class="content-loader">
         <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
       </div>
 
+      <div *ngIf="this.listaUsuario.length !== 0 && !loading" class="mb-3 search">
+        <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+        <i class="ic-search"></i>
+      </div>
 
-      <div *ngIf="this.listaUsuario.length !== 0 && !loading">
+      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaUsuarioFilter.length === 0 && !loading">
+        <span>Lista Vazia</span>
+      </div>
+
+      <div *ngIf="this.listaUsuarioFilter.length !== 0 && !loading">
         <table class="table table-hover">
           <thead>
           <tr>
@@ -36,7 +40,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let usuario of listaUsuario">
+          <tr *ngFor="let usuario of listaUsuarioFilter">
             <td>{{usuario.nome}}</td>
             <td>{{usuario.email}}</td>
             <td>{{usuario.perfil === 1 ? 'Enfermeiro' : 'Coordenador'}}</td>

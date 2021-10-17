@@ -22,6 +22,7 @@ export class VerificarEstoqueComponent implements OnInit {
   loading = false;
 
   listaVacinas: Array<VacinaEstoque> = [];
+  listaVacinasFilter: Array<VacinaEstoque> = [];
 
   constructor(
     private appService: AppService,
@@ -45,6 +46,7 @@ export class VerificarEstoqueComponent implements OnInit {
     if (response['status'] === 200) {
 
       this.listaVacinas = [... response['body']];
+      this.listaVacinasFilter = [... this.listaVacinas];
 
       this.loading = false;
 
@@ -102,6 +104,25 @@ export class VerificarEstoqueComponent implements OnInit {
         }
       }
     });
+  }
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaVacinasFilter = [... this.listaVacinas];
+    }
+    else {
+      const newListVacinas: Array<VacinaEstoque> = [];
+
+      this.listaVacinas.map(v => {
+        if (v.nome.toUpperCase().match(value)) {
+          newListVacinas.push(v);
+        }
+      });
+
+      this.listaVacinasFilter = [... newListVacinas];
+    }
   }
 
   // async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {

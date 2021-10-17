@@ -4,6 +4,7 @@ export interface Vacina {
   fabricante: string;
   dataFabricacao?: string;
   numeroRegistro?: number;
+  bula?: string;
 }
 
 export interface VacinaEstoque {

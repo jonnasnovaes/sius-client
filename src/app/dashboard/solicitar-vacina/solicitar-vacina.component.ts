@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {StatusSolicitacaoVacina, Vacina} from '../../core/interfaces/Vacina';
+import {StatusSolicitacaoVacina, Vacina, VacinaEstoque} from '../../core/interfaces/Vacina';
 import {AlertModalComponent} from '../../core/alert-modal/alert-modal.component';
 import {CadastrarVacinaService} from '../cadastrar-vacina/cadastrar-vacina.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +20,7 @@ export class SolicitarVacinaComponent implements OnInit {
   loading = false;
 
   listaVacinas: Array<Vacina> = [];
+  listaVacinasFilter: Array<Vacina> = [];
   vacinasSolicitadas: Array<StatusSolicitacaoVacina>;
 
   usuario: Usuario;
@@ -47,9 +48,8 @@ export class SolicitarVacinaComponent implements OnInit {
       const vacinasSolicitadas = await this.solicitarVacina.httpGetSolicitarLoteVacina();
       this.vacinasSolicitadas = vacinasSolicitadas['body'];
 
-      console.log(this.vacinasSolicitadas);
-
       this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
+      this.listaVacinasFilter = [... this.listaVacinas];
 
       this.loading = false;
 
@@ -143,6 +143,25 @@ export class SolicitarVacinaComponent implements OnInit {
         }
       }
     });
+  }
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaVacinasFilter = [... this.listaVacinas];
+    }
+    else {
+      const newListVacinas: Array<Vacina> = [];
+
+      this.listaVacinas.map(v => {
+        if (v.nome.toUpperCase().match(value)) {
+          newListVacinas.push(v);
+        }
+      });
+
+      this.listaVacinasFilter = [... newListVacinas];
+    }
   }
 
 }

@@ -2,13 +2,23 @@ table {
   width: 100%;
 }
 
-.content {
-  margin-top: 80px;
-  margin-bottom: 50px;
-}
-
 .acao {
   display: flex;
   justify-content: end;
   padding-inline: 130px;
+}
+
+.content {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.search {
+  position: relative;
+  & > i {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 18px;
+  }
 }

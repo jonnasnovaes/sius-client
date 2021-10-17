@@ -19,6 +19,7 @@ export class UsuariosComponent implements OnInit {
   loading = false;
 
   listaUsuario: Array<Usuario> = [];
+  listaUsuarioFilter: Array<Usuario> = [];
 
   constructor(
     private appService: AppService,
@@ -38,6 +39,7 @@ export class UsuariosComponent implements OnInit {
     if (response['status'] === 200) {
       const resposeUsuario: Array<Usuario> = [... response['body']];
       this.listaUsuario = resposeUsuario.filter(ru => ru.perfil === 1 || ru.perfil === 2);
+      this.listaUsuarioFilter = [... this.listaUsuario];
     }
     else {
       const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
@@ -123,5 +125,26 @@ export class UsuariosComponent implements OnInit {
 
     }
   }
+
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaUsuarioFilter = [... this.listaUsuario];
+    }
+    else {
+      const newListUsuario: Array<Usuario> = [];
+
+      this.listaUsuario.map(v => {
+        if (v.nome.match(value)) {
+          newListUsuario.push(v);
+        }
+      });
+
+      this.listaUsuarioFilter = [... newListUsuario];
+    }
+  }
+
 
 }

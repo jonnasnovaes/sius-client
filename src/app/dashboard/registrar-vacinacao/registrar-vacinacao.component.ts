@@ -14,6 +14,7 @@ import {RegistrarVacinacaoService} from './registrar-vacinacao.service';
 export class RegistrarVacinacaoComponent implements OnInit {
 
   listaRegistro: Array<RegistrarVacinacao> = [];
+  listaRegistroFilter: Array<RegistrarVacinacao> = [];
 
   loading = false;
 
@@ -34,6 +35,7 @@ export class RegistrarVacinacaoComponent implements OnInit {
 
     if (response['status'] === 200) {
       this.listaRegistro = [... response['body']];
+      this.listaRegistroFilter = [... this.listaRegistro];
     }
     else {
       const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
@@ -65,6 +67,25 @@ export class RegistrarVacinacaoComponent implements OnInit {
         });
       }
     });
+  }
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaRegistroFilter = [... this.listaRegistro];
+    }
+    else {
+      const newListVacinas: Array<RegistrarVacinacao> = [];
+
+      this.listaRegistro.map(v => {
+        if (v.nome.match(value)) {
+          newListVacinas.push(v);
+        }
+      });
+
+      this.listaRegistroFilter = [... newListVacinas];
+    }
   }
 
 }

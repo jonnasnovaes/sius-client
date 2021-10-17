@@ -16,32 +16,39 @@
 
     <div class="content">
 
-      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaVacinas.length === 0 && !loading">
-        <span>Lista Vazia</span>
-      </div>
-
       <div class="content-loader">
         <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
       </div>
 
 
-      <div *ngIf="this.listaVacinas.length !== 0 && !loading">
+      <div *ngIf="!loading" class="mb-3 search">
+        <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+        <i class="ic-search"></i>
+      </div>
+
+      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaVacinasFilter.length === 0 && !loading">
+        <span>Lista Vazia</span>
+      </div>
+
+      <div *ngIf="this.listaVacinasFilter.length !== 0 && !loading">
         <table class="table table-hover">
           <thead>
           <tr>
             <th scope="col">Nome da Vacina</th>
             <th scope="col">Fabricante</th>
-            <th scope="col">Data de Fabricação</th>
+<!--            <th scope="col">Data de Fabricação</th>-->
             <th scope="col">Número do Registro</th>
+            <th scope="col">Bula</th>
             <th scope="col" class="d-flex justify-content-center">Ações</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let vacina of listaVacinas">
+          <tr *ngFor="let vacina of listaVacinasFilter">
             <td>{{vacina.nome}}</td>
             <td>{{vacina.fabricante}}</td>
-            <td>{{vacina.dataFabricacao}}</td>
+<!--            <td>{{vacina.dataFabricacao}}</td>-->
             <td>{{vacina.numeroRegistro}}</td>
+            <td><span *ngIf="vacina.bula !== ''" class="bula" (click)="abrirBula(vacina.bula)"><i class="ic-file-pdf"></i></span></td>
             <td class="d-flex justify-content-center">
               <button mat-flat-button color="primary" class="mr-2" (click)="acao('edit', vacina.id)">
                 <i class="ic-pencil mr-2"></i>Editar

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CadastrarVacinaService} from '../cadastrar-vacina.service';
@@ -17,6 +17,10 @@ export class VacinaModalComponent implements OnInit {
 
   titulo: string;
 
+  nomeArquivoBula = '';
+  arquivoBula = null;
+  @ViewChild('inputArquivoBula') inputArquivoBula: ElementRef;
+
   form: FormGroup = new FormGroup({
     nome: new FormControl('', Validators.required),
     fabricante: new FormControl('', Validators.required),
@@ -28,7 +32,7 @@ export class VacinaModalComponent implements OnInit {
 
   constructor(
     private cadastrarVacinaService: CadastrarVacinaService,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +49,8 @@ export class VacinaModalComponent implements OnInit {
         dataFabricacao: this.dadosVacina.dataFabricacao,
         numeroRegistro: this.dadosVacina.numeroRegistro,
       });
+
+      this.nomeArquivoBula = this.dadosVacina.bula;
     }
     else {
       this.titulo = 'Cadastrar';
@@ -58,14 +64,21 @@ export class VacinaModalComponent implements OnInit {
   async cadastrarVacina(): Promise<any> {
     this.loading = true;
 
-    const novaVacina = {
-      nome: this.form.get('nome').value,
-      fabricante: this.form.get('fabricante').value,
-      dataFabricacao: this.form.get('dataFabricacao').value,
-      numeroRegistro: Number(this.form.get('numeroRegistro').value),
-    };
+    // const novaVacina = {
+    //   nome: this.form.get('nome').value,
+    //   fabricante: this.form.get('fabricante').value,
+    //   dataFabricacao: this.form.get('dataFabricacao').value,
+    //   numeroRegistro: Number(this.form.get('numeroRegistro').value),
+    // };
 
-    const response = await this.cadastrarVacinaService.httpPostVacinas(novaVacina);
+    const formData = new FormData();
+    formData.append('nome', this.form.get('nome').value);
+    formData.append('fabricante', this.form.get('fabricante').value);
+    formData.append('dataFabricacao', this.form.get('dataFabricacao').value);
+    formData.append('numeroRegistro', this.form.get('numeroRegistro').value);
+    formData.append('bula', this.arquivoBula);
+
+    const response = await this.cadastrarVacinaService.httpPostVacinas(formData);
 
     if (response.status === 200) {
       this.closeModal('ok');
@@ -79,15 +92,23 @@ export class VacinaModalComponent implements OnInit {
   async atualizarVacina(): Promise<any> {
     this.loading = true;
 
-    const novaVacina = {
-      id: this.idVacina,
-      nome: this.form.get('nome').value,
-      fabricante: this.form.get('fabricante').value,
-      dataFabricacao: this.form.get('dataFabricacao').value,
-      numeroRegistro: Number(this.form.get('numeroRegistro').value),
-    };
+    // const novaVacina = {
+    //   id: this.idVacina,
+    //   nome: this.form.get('nome').value,
+    //   fabricante: this.form.get('fabricante').value,
+    //   dataFabricacao: this.form.get('dataFabricacao').value,
+    //   numeroRegistro: Number(this.form.get('numeroRegistro').value),
+    // };
 
-    const response = await this.cadastrarVacinaService.httpPutVacina(novaVacina);
+    const formData = new FormData();
+    formData.append('id', String(this.idVacina));
+    formData.append('nome', this.form.get('nome').value);
+    formData.append('fabricante', this.form.get('fabricante').value);
+    formData.append('dataFabricacao', this.form.get('dataFabricacao').value);
+    formData.append('numeroRegistro', this.form.get('numeroRegistro').value);
+    formData.append('bula', this.arquivoBula);
+
+    const response = await this.cadastrarVacinaService.httpPutVacina(formData);
 
     if (response.status === 200) {
       this.closeModal('ok');
@@ -95,6 +116,31 @@ export class VacinaModalComponent implements OnInit {
     else {
       this.closeModal('error');
     }
+  }
+
+  setUpperCase(): void {
+
+    const nome = this.form.get('nome').value;
+    const fabricante = this.form.get('fabricante').value;
+
+    this.form.patchValue({
+      nome: nome.toUpperCase(),
+      fabricante: fabricante.toUpperCase()
+    });
+  }
+
+  addArquivoBula(): void {
+    const event = new MouseEvent('click', {bubbles: true});
+    this.inputArquivoBula.nativeElement.dispatchEvent(event);
+  }
+  handleFileInput(arquivo: FileList): void {
+    this.arquivoBula = arquivo.item(0);
+    this.nomeArquivoBula = arquivo.item(0).name;
+  }
+
+  resetArquivoBula(): void {
+    this.arquivoBula = null;
+    this.nomeArquivoBula = '';
   }
 
 }

@@ -16,16 +16,20 @@
 
     <div class="content">
 
-      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaRegistro.length === 0 && !loading">
-        <span>Lista Vazia</span>
-      </div>
-
       <div class="content-loader">
         <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
       </div>
 
+      <div *ngIf="this.listaRegistroFilter.length !== 0 && !loading" class="mb-3 search">
+        <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+        <i class="ic-search"></i>
+      </div>
 
-      <div *ngIf="this.listaRegistro.length !== 0 && !loading">
+      <div class="d-flex w-100 justify-content-center" *ngIf="this.listaRegistroFilter.length === 0 && !loading">
+        <span>Lista Vazia</span>
+      </div>
+
+      <div *ngIf="this.listaRegistroFilter.length !== 0 && !loading">
         <table class="table table-hover">
           <thead>
           <tr>
@@ -37,7 +41,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let registro of listaRegistro">
+          <tr *ngFor="let registro of listaRegistroFilter">
             <td>{{registro.nome}}</td>
             <td>{{registro.numeroSus}}</td>
             <td>{{registro.idade}}</td>

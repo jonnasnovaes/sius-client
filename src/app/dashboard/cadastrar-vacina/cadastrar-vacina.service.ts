@@ -20,11 +20,11 @@ export class CadastrarVacinaService {
     }
 
     async httpPostVacinas(vacina): Promise<any> {
-      return await this.http.post(environment.api + 'vacina', vacina, {observe: 'response'}).toPromise();
+      return await this.http.post(environment.api + 'vacina/formData', vacina, {observe: 'response'}).toPromise();
     }
 
     async httpPutVacina(vacina): Promise<any> {
-      return await this.http.put(environment.api + 'vacina', vacina, {observe: 'response'}).toPromise();
+      return await this.http.put(environment.api + 'vacina/formData', vacina, {observe: 'response'}).toPromise();
     }
 
   async httpDeleteVacinas(idVacina): Promise<any> {

@@ -17,6 +17,7 @@ export class RegistrarLoteComponent implements OnInit {
   loading = false;
 
   listaVacinas: Array<Vacina> = [];
+  listaVacinasFilter: Array<Vacina> = [];
 
   constructor(
     private modal: NgbModal,
@@ -38,10 +39,8 @@ export class RegistrarLoteComponent implements OnInit {
     if (response['status'] === 200) {
       const vacinasSolicitadas = await this.solicitarVacina.httpGetSolicitarLoteVacina();
 
-      console.log(vacinasSolicitadas);
-
       this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
-
+      this.listaVacinasFilter = [... this.listaVacinasFilter];
       // if (vacinasSolicitadas['body'].length === 0) {
       //   this.listaVacinas = [... response['body']];
       // }
@@ -98,6 +97,25 @@ export class RegistrarLoteComponent implements OnInit {
       });
     });
     return [... newListVacina];
+  }
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaVacinasFilter = [... this.listaVacinas];
+    }
+    else {
+      const newListVacinas: Array<Vacina> = [];
+
+      this.listaVacinas.map(v => {
+        if (v.nome.match(value)) {
+          newListVacinas.push(v);
+        }
+      });
+
+      this.listaVacinasFilter = [... newListVacinas];
+    }
   }
 
   // async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {

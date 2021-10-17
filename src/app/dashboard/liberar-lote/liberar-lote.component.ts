@@ -15,6 +15,7 @@ import {AppService} from '../../services/app.service';
 export class LiberarLoteComponent implements OnInit {
 
   listaVacinas: Array<Vacina> = [];
+  listaVacinasFilter: Array<Vacina> = [];
 
   loading = false;
 
@@ -36,6 +37,7 @@ export class LiberarLoteComponent implements OnInit {
 
     if (response['status'] === 200) {
       this.listaVacinas = [... response['body']];
+      this.listaVacinasFilter = [... this.listaVacinas];
     }
     else {
       const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
@@ -66,6 +68,25 @@ export class LiberarLoteComponent implements OnInit {
         }
       }
     });
+  }
+
+  search($event): void {
+    const value = $event.target.value.toUpperCase();
+
+    if (value === '') {
+      this.listaVacinasFilter = [... this.listaVacinas];
+    }
+    else {
+      const newListVacinas: Array<Vacina> = [];
+
+      this.listaVacinas.map(v => {
+        if (v.nome.match(value)) {
+          newListVacinas.push(v);
+        }
+      });
+
+      this.listaVacinasFilter = [... newListVacinas];
+    }
   }
 
 }

@@ -40,7 +40,7 @@ export class RegistrarLoteComponent implements OnInit {
       const vacinasSolicitadas = await this.solicitarVacina.httpGetSolicitarLoteVacina();
 
       this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
-      this.listaVacinasFilter = [... this.listaVacinasFilter];
+      this.listaVacinasFilter = [... this.listaVacinas];
       // if (vacinasSolicitadas['body'].length === 0) {
       //   this.listaVacinas = [... response['body']];
       // }
@@ -90,7 +90,6 @@ export class RegistrarLoteComponent implements OnInit {
     listaVacinaCompleta.map(v => {
       listaVacinasSolicitadas.map(lv => {
         const itemNewListExist = newListVacina.find(nlv => nlv.id === v.id);
-
         if (lv.liberado === true && lv.recebido === false && itemNewListExist === undefined && v.id === lv.idVacina) {
           newListVacina.push(v);
         }

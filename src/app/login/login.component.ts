@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -31,23 +31,36 @@ export class LoginComponent implements OnInit {
   async logar(): Promise<any> {
     this.loading = true;
 
-    const perfilAtivo = await this.authService.login(this.form.value);
+    try {
+      const perfilAtivo = await this.authService.login(this.form.value);
 
-    setTimeout(async () => {
-      if (perfilAtivo === 0) {
-        await this.router.navigateByUrl('dashboard/cadastrar-vacina');
-      }
-      else if (perfilAtivo === 1 || perfilAtivo === 2) {
-        await this.router.navigateByUrl('dashboard/relatorio-dashboard');
-      }
-      else if (!perfilAtivo) {
-        const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
-        alertModal.componentInstance.message = 'Erro ao tentar logar no sistema.';
-      }
+      setTimeout(async () => {
+        if (perfilAtivo === 0) {
+          await this.router.navigateByUrl('dashboard/cadastrar-vacina');
+        }
+        else if (perfilAtivo === 1 || perfilAtivo === 2) {
+          await this.router.navigateByUrl('dashboard/relatorio-dashboard');
+        }
+        else if (!perfilAtivo) {
+          const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+          alertModal.componentInstance.message = 'Erro ao tentar logar no sistema.';
+        }
 
+        this.loading = false;
+      }, 3000);
+    } catch (e) {
       this.loading = false;
-    }, 3000);
+      const alertModal = this.modal.open(AlertModalComponent, {size: 'md'});
+      alertModal.componentInstance.message = 'Erro ao tentar logar no sistema.';
+    }
 
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  async handleKeyboardEvent(event: KeyboardEvent): Promise<void> {
+    if (event.code === 'Enter') {
+      await this.logar();
+    }
   }
 
 }

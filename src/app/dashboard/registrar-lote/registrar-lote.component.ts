@@ -41,14 +41,6 @@ export class RegistrarLoteComponent implements OnInit {
 
       this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
       this.listaVacinasFilter = [... this.listaVacinas];
-      // if (vacinasSolicitadas['body'].length === 0) {
-      //   this.listaVacinas = [... response['body']];
-      // }
-      // else {
-      //   console.log(response['body']);
-      //   console.log(vacinasSolicitadas['body']);
-      //   this.listaVacinas = await this.filterListVacina([... response['body']], vacinasSolicitadas['body']);
-      // }
 
       this.loading = false;
 
@@ -108,7 +100,7 @@ export class RegistrarLoteComponent implements OnInit {
       const newListVacinas: Array<Vacina> = [];
 
       this.listaVacinas.map(v => {
-        if (v.nome.match(value)) {
+        if (v.nome.toUpperCase().match(value.toUpperCase())) {
           newListVacinas.push(v);
         }
       });
@@ -117,16 +109,10 @@ export class RegistrarLoteComponent implements OnInit {
     }
   }
 
-  // async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {
-  //   let newListVacina: Array<Vacina> = [];
-  //   listaVacinaCompleta.map(v => {
-  //     listaVacinasSolicitadas.map(lv => {
-  //       if ((lv.liberado === true && lv.recebido === false)) {
-  //         newListVacina.push(v);
-  //       }
-  //     });
-  //   });
-  //   return [... newListVacina];
-  // }
+  abrirBula(bula: string): void {
+    if (bula !== '' && bula !== null) {
+      window.open(`http://localhost:5000/bulas/${bula}`);
+    }
+  }
 
 }

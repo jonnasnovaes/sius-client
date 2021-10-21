@@ -13,6 +13,7 @@ export interface VacinaEstoque {
   nome: string;
   fabricante: string;
   quantidade: number;
+  bula?: string;
 }
 
 export interface RegistrarVacinacao {

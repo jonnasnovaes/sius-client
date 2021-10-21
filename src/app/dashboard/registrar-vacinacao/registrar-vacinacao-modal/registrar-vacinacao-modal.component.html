@@ -40,6 +40,14 @@
           <label for="dataVacinacao">Data de Vacinação</label>
           <input id="dataVacinacao" class="form-control" type="date" formControlName="dataVacinacao" />
         </div>
+        <div class="col-6 d-flex justify-content-center align-items-center">
+          <div class="link-bula">
+            <button mat-stroked-button color="primary" class="mr-2" (click)="abrirBula()" [disabled]="form.get('vacina').value === ''">
+              <i class="ic-file-pdf mr-2"></i>Visualizar Bula
+            </button>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

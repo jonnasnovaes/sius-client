@@ -80,12 +80,18 @@ export class LiberarLoteComponent implements OnInit {
       const newListVacinas: Array<Vacina> = [];
 
       this.listaVacinas.map(v => {
-        if (v.nome.match(value)) {
+        if (v.nome.toUpperCase().match(value.toUpperCase())) {
           newListVacinas.push(v);
         }
       });
 
       this.listaVacinasFilter = [... newListVacinas];
+    }
+  }
+
+  abrirBula(bula: string): void {
+    if (bula !== '' && bula !== null) {
+      window.open(`http://localhost:5000/bulas/${bula}`);
     }
   }
 

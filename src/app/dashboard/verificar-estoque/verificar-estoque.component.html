@@ -13,8 +13,8 @@
       <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
     </div>
 
-    <div *ngIf="this.listaVacinasFilter.length !== 0 && !loading" class="mb-3 search">
-      <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+    <div *ngIf="!loading" class="mb-3 search">
+      <input class="form-control" type="text" placeholder="Pesquisar Vacina" (keyup)="search($event)" />
       <i class="ic-search"></i>
     </div>
 
@@ -28,6 +28,7 @@
         <tr>
           <th scope="col">Nome da Vacina</th>
           <th scope="col">Fabricante</th>
+          <th scope="col">Bula</th>
           <th scope="col">Quantidade</th>
           <th scope="col" class="d-flex" [ngClass]="usuario.perfil === 2 ? 'acao' : 'd-flex justify-content-center'">Ações</th>
         </tr>
@@ -36,6 +37,7 @@
         <tr *ngFor="let vacina of listaVacinasFilter">
           <td>{{vacina.nome}}</td>
           <td>{{vacina.fabricante}}</td>
+          <td><span [ngClass]="vacina.bula === null || '' ? 'bula-desativada' : 'bula-ativada'" class="" (click)="abrirBula(vacina.bula)"><i class="ic-file-pdf"></i></span></td>
           <td>{{vacina.quantidade}}</td>
           <td class="d-flex" [ngClass]="usuario.perfil === 2 ? 'justify-content-end' : 'justify-content-center'">
             <button mat-flat-button color="warn" class="mr-2" (click)="acao(vacina)" [disabled]="vacina.quantidade === 0">

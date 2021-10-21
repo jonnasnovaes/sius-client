@@ -116,7 +116,7 @@ export class VerificarEstoqueComponent implements OnInit {
       const newListVacinas: Array<VacinaEstoque> = [];
 
       this.listaVacinas.map(v => {
-        if (v.nome.toUpperCase().match(value)) {
+        if (v.nome.toUpperCase().match(value.toUpperCase())) {
           newListVacinas.push(v);
         }
       });
@@ -125,20 +125,10 @@ export class VerificarEstoqueComponent implements OnInit {
     }
   }
 
-  // async filterListVacina(listaVacinaCompleta, listaVacinasSolicitadas): Promise<Array<Vacina>> {
-  //   let newListVacina: Array<Vacina> = [];
-  //   console.log(listaVacinasSolicitadas);
-  //   console.log(listaVacinaCompleta);
-  //   listaVacinaCompleta.map(v => {
-  //     listaVacinasSolicitadas.map(lv => {
-  //       const itemNewListExist = newListVacina.find(nlv => nlv.id === v.id);
-  //       console.log(itemNewListExist);
-  //       if (lv.liberado === true && lv.recebido === true && itemNewListExist === undefined && v.id === lv.idVacina) {
-  //         newListVacina.push(v);
-  //       }
-  //     });
-  //   });
-  //   return [... newListVacina];
-  // }
+  abrirBula(bula: string): void {
+    if (bula !== '' && bula !== null) {
+      window.open(`http://localhost:5000/bulas/${bula}`);
+    }
+  }
 
 }

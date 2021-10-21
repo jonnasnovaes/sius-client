@@ -16,3 +16,16 @@ table {
     font-size: 18px;
   }
 }
+
+.bula-ativada {
+  cursor: pointer;
+  color: red;
+  font-size: 24px;
+}
+
+.bula-desativada {
+  cursor: default;
+  color: grey;
+  font-size: 24px;
+}
+

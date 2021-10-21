@@ -13,8 +13,8 @@
         <div *ngIf="loading" class="spinner-border" role="status"><span class="sr-only"></span></div>
       </div>
 
-      <div *ngIf="this.listaVacinasFilter.length !== 0 && !loading" class="mb-3 search">
-        <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+      <div *ngIf="!loading" class="mb-3 search">
+        <input class="form-control" type="text" placeholder="Pesquisar Vacina" (keyup)="search($event)" />
         <i class="ic-search"></i>
       </div>
 
@@ -22,12 +22,13 @@
         <span>Lista Vazia</span>
       </div>
 
-      <div *ngIf="this.listaVacinasFilter.length !== 0 && !loading">
+      <div *ngIf="this.listaVacinas.length !== 0 && !loading">
         <table class="table table-hover">
           <thead>
           <tr>
             <th scope="col">Nome da Vacina</th>
             <th scope="col">Fabricante</th>
+            <th scope="col">Bula</th>
             <th scope="col" [ngClass]="usuario.perfil === 2 ? 'acao' : 'd-flex justify-content-center'">Ações</th>
           </tr>
           </thead>
@@ -35,6 +36,7 @@
           <tr *ngFor="let vacina of listaVacinasFilter">
             <td>{{vacina.nome}}</td>
             <td>{{vacina.fabricante}}</td>
+            <td><span [ngClass]="vacina.bula === null || '' ? 'bula-desativada' : 'bula-ativada'" class="" (click)="abrirBula(vacina.bula)"><i class="ic-file-pdf"></i></span></td>
             <td class="d-flex" [ngClass]="usuario.perfil === 2 ? 'justify-content-end' : 'justify-content-center'">
               <button mat-flat-button color="primary" class="mr-2" (click)="acao(vacina)" [disabled]="statusSolicitacaoVacina(vacina, 'solicitar')">
                 <i class="ic-plus mr-2"></i>Solicitar

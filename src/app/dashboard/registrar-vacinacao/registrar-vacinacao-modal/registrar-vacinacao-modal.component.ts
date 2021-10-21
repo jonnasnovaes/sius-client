@@ -78,4 +78,11 @@ export class RegistrarVacinacaoModalComponent implements OnInit {
     this.activeModal.close(botaoSelecionado);
   }
 
+  abrirBula(): void {
+    if (this.form.get('vacina').value !== '') {
+      const vacina = this.listaVacina.find(v => v.nome === this.form.get('vacina').value);
+      window.open(`http://localhost:5000/bulas/${vacina.bula}`);
+    }
+  }
+
 }

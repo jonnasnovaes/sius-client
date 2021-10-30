@@ -21,7 +21,7 @@
       </div>
 
       <div *ngIf="this.listaRegistroFilter.length !== 0 && !loading" class="mb-3 search">
-        <input class="form-control" type="text" placeholder="" (keyup)="search($event)" />
+        <input class="form-control" type="text" placeholder="Pesquisar Paciente" (keyup)="search($event)" />
         <i class="ic-search"></i>
       </div>
 
@@ -34,9 +34,10 @@
           <thead>
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Número do Sus</th>
+            <th scope="col">Número do SUS</th>
             <th scope="col">Idade</th>
             <th scope="col">Vacina Aplicada</th>
+            <th scope="col">Hora da Vacinação</th>
             <th scope="col">Data da Vacinação</th>
           </tr>
           </thead>
@@ -44,8 +45,9 @@
           <tr *ngFor="let registro of listaRegistroFilter">
             <td>{{registro.nome}}</td>
             <td>{{registro.numeroSus}}</td>
-            <td>{{registro.idade}}</td>
+            <td>{{registro.idade}} anos</td>
             <td>{{registro.vacina}}</td>
+            <td>{{registro.horaVacinacao}}</td>
             <td>{{registro.dataVacinacao}}</td>
           </tr>
           </tbody>

@@ -34,7 +34,21 @@ export class RegistrarVacinacaoComponent implements OnInit {
     const response = await this.registrarVacinacaoService.httpGetRegistroVacinacao();
 
     if (response['status'] === 200) {
-      this.listaRegistro = [... response['body']];
+      const listaRegistroResponse = [... response['body']];
+      listaRegistroResponse.map(lr => {
+        const dateTimeSplit = lr.dataVacinacao.split(' ');
+
+        this.listaRegistro.push({
+          nome: lr.nome,
+          numeroSus: lr.numeroSus,
+          idade: lr.idade,
+          vacina: lr.vacina,
+          dataVacinacao: dateTimeSplit[0],
+          horaVacinacao: dateTimeSplit[1]
+        });
+
+      });
+
       this.listaRegistroFilter = [... this.listaRegistro];
     }
     else {
@@ -79,7 +93,7 @@ export class RegistrarVacinacaoComponent implements OnInit {
       const newListVacinas: Array<RegistrarVacinacao> = [];
 
       this.listaRegistro.map(v => {
-        if (v.nome.match(value)) {
+        if (v.nome.toUpperCase().match(value.toUpperCase())) {
           newListVacinas.push(v);
         }
       });

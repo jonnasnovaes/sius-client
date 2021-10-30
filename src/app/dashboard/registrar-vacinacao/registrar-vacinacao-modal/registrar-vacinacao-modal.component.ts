@@ -22,7 +22,7 @@ export class RegistrarVacinacaoModalComponent implements OnInit {
     numeroSus: new FormControl('', Validators.required),
     idade: new FormControl('', Validators.required),
     vacina: new FormControl('', Validators.required),
-    dataVacinacao: new FormControl('', Validators.required),
+    // dataVacinacao: new FormControl('', Validators.required),
   });
 
   listaVacina: Array<Vacina> = [];
@@ -52,15 +52,15 @@ export class RegistrarVacinacaoModalComponent implements OnInit {
   async registrarVacinacao(): Promise<any> {
     this.loading = true;
 
-    const data = this.form.get('dataVacinacao').value;
-    const dataSplit = data.split('-');
+    // const data = this.form.get('dataVacinacao').value;
+    // const dataSplit = data.split('-');
 
     const novoRegistroVacinacao: RegistrarVacinacao = {
       nome: this.form.get('nome').value,
       numeroSus: this.form.get('numeroSus').value,
       idade: Number(this.form.get('idade').value),
       vacina: this.form.get('vacina').value,
-      dataVacinacao: dataSplit[2] + '/' + dataSplit[1] + '/' + dataSplit[0],
+      // dataVacinacao: dataSplit[2] + '/' + dataSplit[1] + '/' + dataSplit[0],
     };
 
     const response = await this.registrarVacinacaoService.httpPostRegistroVacinacao(novoRegistroVacinacao);

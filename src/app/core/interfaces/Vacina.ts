@@ -21,7 +21,8 @@ export interface RegistrarVacinacao {
   numeroSus: string;
   idade: number;
   vacina: string;
-  dataVacinacao: string;
+  dataVacinacao?: string;
+  horaVacinacao?: string;
 }
 
 export interface StatusSolicitacaoVacina {

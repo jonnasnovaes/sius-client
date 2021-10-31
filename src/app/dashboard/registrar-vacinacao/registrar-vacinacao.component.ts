@@ -35,6 +35,9 @@ export class RegistrarVacinacaoComponent implements OnInit {
 
     if (response['status'] === 200) {
       const listaRegistroResponse = [... response['body']];
+
+      this.listaRegistro = [];
+
       listaRegistroResponse.map(lr => {
         const dateTimeSplit = lr.dataVacinacao.split(' ');
 

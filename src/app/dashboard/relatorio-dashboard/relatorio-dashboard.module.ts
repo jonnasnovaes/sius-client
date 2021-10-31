@@ -5,6 +5,7 @@ import { RelatorioDashboardRoutingModule } from './relatorio-dashboard-routing.m
 import {RelatorioDashboardComponent} from './relatorio-dashboard.component';
 import { GraficoComponent } from './grafico/grafico.component';
 import {GoogleChartsModule} from 'angular-google-charts';
+import {NgbPagination, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {GoogleChartsModule} from 'angular-google-charts';
   imports: [
     CommonModule,
     RelatorioDashboardRoutingModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    NgbPaginationModule
   ],
   exports: [
     RelatorioDashboardComponent
